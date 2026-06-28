@@ -1107,10 +1107,9 @@ img {
   .nav-dropdown {
     display: none;
   }
-  .btn {
-    display: none;
-  }
-
+  .a.btn.btn-primary {
+  display: none;
+}
   .nav-links {
     display: none;
     position: fixed;
