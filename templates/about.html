@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+{% block title %}About — CyberShield{% endblock %}
+{% block content %}
+
+<!-- ── About Hero ─────────────────────────────────────────────────────── -->
+<section class="about-hero">
+  <div class="about-hero-inner">
+    <div class="about-hero-text">
+      <div class="about-hero-badge">👨‍💻 The Developer Behind CyberShield</div>
+      <h1 id="typewriter-name" aria-label="Pushprajsinh Upendrasinh Rathod"></h1>
+      <span class="about-hero-role">
+        <span id="role-text"></span><span class="role-cursor">|</span>
+      </span>
+      <p>
+        Building free, accessible tools that help everyday Indians protect themselves from digital threats.
+        Currently pursuing my Diploma in Information Technology at GTU and moving towards a full career in cybersecurity.
+      </p>
+      <div class="about-chips-row">
+        <span class="about-chip">🛡️ Cyber Security</span>
+        <span class="about-chip">💻 Web Dev</span>
+        <span class="about-chip">🐍 Python</span>
+        <span class="about-chip">🎓 GTU Diploma IT</span>
+        <span class="about-chip">🌐 Networking</span>
+      </div>
+      <div class="about-hero-links">
+        <a href="https://github.com/PUSHPRAJSINH07" class="hero-link-btn hero-link-github">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.419 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12c0-5.523-4.477-10-10-10z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/pushprajsinhrathod-gpg-it-dte" class="hero-link-btn hero-link-linkedin">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:upendrasinhrathod82@gmail.com" class="hero-link-btn hero-link-email">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 7 10-7"/></svg>
+  Email Me
+</a>
+      </div>
+    </div>
+
+    <!-- Profile Photo -->
+    <div class="about-photo-card">
+      <div class="photo-frame">
+        <img src="{{ url_for('static', filename='photos/Pushpraj.jpeg') }}" alt="Pushprajsinh Rathod" class="profile-photo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Main Content ───────────────────────────────────────────────────── -->
+<div class="about-main">
+
+  <!-- Left: Bio + Timeline + Skills -->
+  <div>
+
+    <div class="about-bio">
+      <span class="about-section-label">About Me</span>
+      <h2>From Curiosity to Code — Building for a Safer Internet</h2>
+      <p>
+        I'm Pushprajsinh Upendrasinh Rathod, a fifth-semester Diploma student in Information Technology at Gujarat Technological University (GTU). What started as general curiosity about how things work on the internet turned into a deep passion for cybersecurity after I learned how many people — including family members — fall victim to online scams every year in India.
+      </p>
+      <p>
+        CyberShield was born from a simple question: why isn't there a free, simple tool in Gujarati-speaking India that helps regular people check if a link or email is dangerous before it's too late? I built it as my answer to that question — combining what I'm learning in my diploma with independent study in web security, networking, and cryptography.
+      </p>
+      <p>
+        I'm currently in my final year of the Diploma programme and actively preparing to move into cybersecurity as a career — starting with certifications like CEH (Certified Ethical Hacker) and eventually specializing in penetration testing or SOC operations.
+      </p>
+      <div class="about-quote-block">
+        <p>"Security is not a product you buy — it's awareness you build. My goal is to make that awareness accessible to every Indian, not just those with technical degrees."</p>
+        <cite>— Pushprajsinh Rathod</cite>
+      </div>
+          Below is a behind-the-scenes look at how CyberShield was designed and developed — 
+    from the initial idea to the final product. This section covers the technology used, 
+    the thinking behind each tool, and what it took to build a free cybersecurity 
+    platform from scratch as a diploma student.
+    </div>
+
+  </div>
+
+  <!-- Sidebar -->
+  <div class="about-sidebar">
+
+    <div class="sidebar-card">
+      <h3>📋 Quick Info</h3>
+      <div class="info-row"><span class="info-label">Full Name</span><span class="info-val">Pushprajsinh Upendrasinh Rathod</span></div>
+      <div class="info-row"><span class="info-label">Course</span><span class="info-val">Diploma in Information Technology</span></div>
+      <div class="info-row"><span class="info-label">University</span><span class="info-val">Government Polytechnic Gandhinagar</span></div>
+      <div class="info-row"><span class="info-label">Semester</span><span class="info-val">5th Semester (Final Year)</span></div>
+      <div class="info-row"><span class="info-label">Location</span><span class="info-val">Gujarat, India</span></div>
+      <div class="info-row"><span class="info-label">Specialization</span><span class="info-val">Python & Web Dev</span></div>
+      <div class="info-row"><span class="info-label">Status</span><span class="info-val" style="color:#12a150;font-weight:700;">● Open to Internships</span></div>
+    </div>
+
+    <div class="sidebar-card">
+      <h3>❤️ Interests</h3>
+      <div class="interest-list">
+        <div class="interest-item"><span class="interest-emoji">🛡️</span> Ethical Hacking</div>
+        <div class="interest-item"><span class="interest-emoji">🌐</span> Digital Forensics</div>
+        <div class="interest-item"><span class="interest-emoji">🔐</span> Cryptography & Encryption</div>
+        <div class="interest-item"><span class="interest-emoji">💻</span> Web Application Security</div>
+        <div class="interest-item"><span class="interest-emoji">🐍</span> Python Backend and Development</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ── How CyberShield Was Built ──────────────────────────────────────── -->
+<section class="cs-built-section">
+  <div class="cs-built-inner">
+    <div class="cs-built-header">
+      <span class="section-eyebrow">Behind the Project</span>
+      <h2>How CyberShield Was Built</h2>
+      <p>A GTU diploma student, a problem worth solving, and a lot of late nights.</p>
+    </div>
+    <div class="cs-built-grid">
+      <div class="cs-built-card">
+        <div class="cs-built-icon">💡</div>
+        <h4>The Idea</h4>
+        <p>It started when a family member almost lost money to a fake HDFC SMS. I realized most people have no simple tool to check if a link is safe before clicking. That gap became CyberShield.</p>
+      </div>
+      <div class="cs-built-card">
+        <div class="cs-built-icon">🐍</div>
+        <h4>Built with Python & Flask</h4>
+        <p>The backend is built with Python and Flask — what I was learning in my 5th semester. Each tool runs as a separate Flask route with its own detection logic.</p>
+      </div>
+      <div class="cs-built-card">
+        <div class="cs-built-icon">🎨</div>
+        <h4>Designed from Scratch</h4>
+        <p>No Bootstrap, no templates. Every pixel of CSS was written by hand — dark mode, animations, responsive layout, and the color system are all custom built using CSS variables.</p>
+      </div>
+      <div class="cs-built-card">
+        <div class="cs-built-icon">🔐</div>
+        <h4>Security Logic</h4>
+        <p>The URL scanner checks 8 patterns — HTTPS, IP-based URLs, suspicious TLDs, phishing keywords, encoded characters, domain length, hyphens, and known scam patterns — all in pure Python.</p>
+      </div>
+      <div class="cs-built-card">
+        <div class="cs-built-icon">🔒</div>
+        <h4>Privacy First Encryption</h4>
+        <p>The AES-256 encryption tool runs entirely in the browser using the Web Crypto API. Zero data is sent to any server — your text never leaves your device.</p>
+      </div>
+      <div class="cs-built-card">
+        <div class="cs-built-icon">🇮🇳</div>
+        <h4>Built for India</h4>
+        <p>Every threat, example, case study, and helpline number is specific to India. UPI fraud, Aadhaar theft, fake job scams — these are Indian problems that needed an Indian solution.</p>
+      </div>
+    </div>
+    <div class="cs-stack-strip">
+      <span class="cs-stack-label">Tech Stack</span>
+      <div class="cs-stack-pills">
+        <span class="cs-stack-pill">🐍 Python</span>
+        <span class="cs-stack-pill">⚗️ Flask</span>
+        <span class="cs-stack-pill">🌐 HTML5</span>
+        <span class="cs-stack-pill">🎨 CSS3</span>
+        <span class="cs-stack-pill">⚡ Vanilla JS</span>
+        <span class="cs-stack-pill">🔐 Web Crypto API</span>
+        <span class="cs-stack-pill">📦 Jinja2</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Career Goals ───────────────────────────────────────────────────── -->
+<section class="about-goals-section">
+  <div class="goals-inner">
+    <span class="section-eyebrow">Looking Ahead</span>
+    <h2>Career Goals in Cybersecurity</h2>
+    <p>My journey from a GTU diploma student to a cybersecurity professional — the path I'm building, one project at a time.</p>
+    <div class="goals-grid">
+      <div class="goal-card">
+        <div class="goal-icon">🎓</div>
+        <h4>Complete Diploma with Distinction</h4>
+        <p>Graduate from GTU Diploma in IT with top marks and strong project portfolio that demonstrates real security skills.</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon">🏆</div>
+        <h4>Earn CEH Certification</h4>
+        <p>Become a Certified Ethical Hacker — the gold standard for entry into penetration testing and security auditing roles.</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon">💼</div>
+        <h4>Land a Cybersecurity Internship</h4>
+        <p>Join a security team as an intern to get hands-on experience with real-world vulnerability assessments and incident response.</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon">🛡️</div>
+        <h4>Work as Penetration Tester</h4>
+        <p>Long-term goal: become a professional penetration tester helping organizations find vulnerabilities before attackers do.</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon">🌐</div>
+        <h4>Grow CyberShield for India</h4>
+        <p>Expand CyberShield into a full platform with Gujarati language support to help people who aren't comfortable with English.</p>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon">🎤</div>
+        <h4>Cyber Awareness Workshops</h4>
+        <p>Conduct awareness sessions at schools and colleges in Gujarat to teach students how to protect themselves online.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Mission Section ───────────────────────────────────────────────── -->
+<section class="about-mission-section">
+  <div class="mission-inner">
+    <span class="section-eyebrow">Why CyberShield Exists</span>
+    <h2>The Mission Behind the Tools</h2>
+    <p>India added 600 million internet users in a decade — but cybersecurity awareness didn't scale with adoption. CyberShield is my attempt to close that gap, one free tool at a time.</p>
+    <div class="mission-pillars">
+      <div class="pillar-card">
+        <div class="pillar-icon">🆓</div>
+        <h4>Always Free</h4>
+        <p>Every tool on CyberShield is and will remain free. Security should not be a privilege only those who can pay for it deserve.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🔒</div>
+        <h4>Privacy First</h4>
+        <p>Tools like encryption run entirely in your browser. Nothing is sent to any server. Your data stays on your device.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🇮🇳</div>
+        <h4>Built for India</h4>
+        <p>The threats, examples, and guidance are tailored for Indian users — UPI fraud, Aadhaar theft, and local scam patterns.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">📚</div>
+        <h4>Education First</h4>
+        <p>Tools alone aren't enough. The awareness guide explains the "why" behind every threat so you recognize the next one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

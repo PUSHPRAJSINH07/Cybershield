@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+{% block title %}Image EXIF Reader — CyberShield{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="page-hero-content">
+    <span class="section-eyebrow">Image EXIF Reader</span>
+    <h1>What is Hidden Inside Your Image?</h1>
+    <p>Every photo contains hidden metadata — GPS location, device used, date, time, and more. Upload an image to reveal what information it carries.</p>
+  </div>
+</section>
+
+<section class="section tool-section">
+  <div class="tool-container">
+
+    <div class="tool-input-card">
+      <label class="input-label">Upload Image to Analyse</label>
+      <div class="exif-drop-zone" id="dropZone" onclick="document.getElementById('imgInput').click()">
+        <div class="exif-drop-icon">🖼️</div>
+        <p>Click to upload or drag & drop an image here</p>
+        <span>Supports JPG, PNG, HEIC, WEBP — Max 10MB</span>
+        <input type="file" id="imgInput" accept="image/*" style="display:none" onchange="readEXIF(this)" />
+      </div>
+      <p class="input-hint">⚠️ Your image is never uploaded to any server — all analysis happens in your browser.</p>
+    </div>
+
+    <!-- Preview -->
+    <div id="imgPreview" class="hidden tool-input-card" style="text-align:center;">
+      <img id="previewImg" style="max-height:300px;border-radius:10px;max-width:100%;" />
+    </div>
+
+    <!-- Results -->
+    <div id="exifResult" class="hidden">
+
+      <!-- Risk Banner -->
+      <div id="riskBanner" class="exif-risk-banner"></div>
+
+      <!-- Data Grid -->
+      <div class="exif-grid" id="exifGrid"></div>
+
+      <!-- Privacy Tips -->
+      <div class="tool-input-card" style="background:#FFF5F5;border-color:#FECACA;margin-top:24px;">
+        <h4 style="color:#DC2626;font-family:var(--font-display);margin-bottom:12px;">⚠️ Privacy Risks Found</h4>
+        <div id="privacyRisks"></div>
+      </div>
+
+    </div>
+
+    <div class="info-cards" style="margin-top:28px;">
+      <div class="info-card">
+        <h4>📍 GPS Location</h4>
+        <p>Photos taken on smartphones store exact GPS coordinates — sharing them reveals exactly where you were.</p>
+      </div>
+      <div class="info-card">
+        <h4>📱 Device Info</h4>
+        <p>Camera brand, model, and serial number are stored — can be used to track your device across photos.</p>
+      </div>
+      <div class="info-card">
+        <h4>✏️ Edited Images</h4>
+        <p>If a photo was edited in Photoshop or any AI tool, the software name appears in EXIF — exposing fake images.</p>
+      </div>
+      <div class="info-card">
+        <h4>🕐 Date & Time</h4>
+        <p>Exact date and time a photo was taken is stored — can reveal your daily routine or alibi information.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<!-- EXIF.js library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.min.js"></script>
+
+<script>
+// Drag and drop support
+const dropZone = document.getElementById('dropZone');
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) processFile(file);
+});
+
+function readEXIF(input) {
+  const file = input.files[0];
+  if (!file) return;
+  processFile(file);
+}
+
+function processFile(file) {
+  // Show preview
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('previewImg').src = e.target.result;
+    document.getElementById('imgPreview').classList.remove('hidden');
+  };
+  reader.readAsDataURL(file);
+
+  // Read EXIF
+  EXIF.getData(file, function() {
+    const all = EXIF.getAllTags(this);
+    displayEXIF(all, file);
+  });
+}
+
+function displayEXIF(tags, file) {
+  const grid   = document.getElementById('exifGrid');
+  const risks  = document.getElementById('privacyRisks');
+  const banner = document.getElementById('riskBanner');
+  const result = document.getElementById('exifResult');
+  result.classList.remove('hidden');
+
+  let rows     = '';
+  let riskList = [];
+
+  function getVal(tag) {
+    if (!tags[tag]) return null;
+    if (tags[tag].description !== undefined) return tags[tag].description;
+    if (tags[tag].value !== undefined) return tags[tag].value;
+    return null;
+  }
+
+  function makeRow(label, value, isRisk) {
+    const hasValue = value !== null && value !== undefined && value !== '';
+    return `
+      <div class="exif-item ${isRisk && hasValue ? 'exif-risk' : ''}">
+        <div class="exif-label">${label}</div>
+        <div class="exif-value ${!hasValue ? 'exif-empty' : ''}">${hasValue ? value : 'Not found in this image'}</div>
+        <div class="exif-badge">${hasValue ? (isRisk ? '<span class="badge-risk">⚠️ Risk</span>' : '<span class="badge-ok">✓ Found</span>') : '<span class="badge-na">— N/A</span>'}</div>
+      </div>`;
+  }
+
+  // ── Section 1: File Information ──────────────────────────────────────────
+  rows += `<div class="exif-section-title">📁 File Information</div>`;
+  rows += makeRow('File Name',      file.name,                                    false);
+  rows += makeRow('File Size',      `${(file.size/1024).toFixed(1)} KB (${(file.size/1024/1024).toFixed(2)} MB)`, false);
+  rows += makeRow('File Type',      file.type,                                    false);
+  rows += makeRow('Last Modified',  new Date(file.lastModified).toLocaleString(), false);
+
+  // ── Section 2: Camera Information ────────────────────────────────────────
+  rows += `<div class="exif-section-title">📷 Camera & Device Information</div>`;
+  rows += makeRow('📱 Camera Brand',    getVal('Make'),             false);
+  rows += makeRow('📷 Camera Model',    getVal('Model'),            false);
+  rows += makeRow('🔭 Lens Model',      getVal('LensModel'),        false);
+  rows += makeRow('🔭 Focal Length',    getVal('FocalLength'),      false);
+  rows += makeRow('⚡ Flash Used',      getVal('Flash'),            false);
+  rows += makeRow('🌟 ISO Speed',       getVal('ISOSpeedRatings'),  false);
+  rows += makeRow('⏱️ Shutter Speed',  getVal('ExposureTime'),     false);
+  rows += makeRow('📐 Aperture (F)',    getVal('FNumber'),          false);
+  rows += makeRow('🌈 White Balance',   getVal('WhiteBalance'),     false);
+  rows += makeRow('🎨 Color Space',     getVal('ColorSpace'),       false);
+  rows += makeRow('📐 Image Width',     getVal('ImageWidth')  || getVal('PixelXDimension'), false);
+  rows += makeRow('📐 Image Height',    getVal('ImageLength') || getVal('PixelYDimension'), false);
+  rows += makeRow('🔢 Bits Per Sample', getVal('BitsPerSample'),    false);
+  rows += makeRow('📏 Resolution X',    getVal('XResolution'),      false);
+  rows += makeRow('📏 Resolution Y',    getVal('YResolution'),      false);
+
+  // ── Section 3: Date & Time ───────────────────────────────────────────────
+  rows += `<div class="exif-section-title">🕐 Date & Time Information</div>`;
+  rows += makeRow('📅 Date & Time Taken',     getVal('DateTime'),            false);
+  rows += makeRow('📅 Original Date & Time',  getVal('DateTimeOriginal'),    false);
+  rows += makeRow('📅 Date Digitized',        getVal('DateTimeDigitized'),   false);
+
+  // ── Section 4: Software & Editing ────────────────────────────────────────
+  rows += `<div class="exif-section-title">✏️ Software & Editing (Privacy Risk)</div>`;
+  const soft = getVal('Software');
+  rows += makeRow('✏️ Software Used',     soft,                      true);
+  rows += makeRow('🖥️ Processing Software', getVal('ProcessingSoftware'), true);
+  if (soft) {
+    riskList.push(`✏️ Image was edited or processed with: <strong>${soft}</strong> — This means the image may have been modified`);
+  }
+
+  // ── Section 5: GPS Location ──────────────────────────────────────────────
+  rows += `<div class="exif-section-title">📍 GPS Location (Biggest Privacy Risk)</div>`;
+  const gpsLat  = getVal('GPSLatitude');
+  const gpsLon  = getVal('GPSLongitude');
+  const gpsLatR = getVal('GPSLatitudeRef')  || '';
+  const gpsLonR = getVal('GPSLongitudeRef') || '';
+  const gpsAlt  = getVal('GPSAltitude');
+  const gpsSpd  = getVal('GPSSpeed');
+  const gpsDat  = getVal('GPSDateStamp');
+  const gpsDire = getVal('GPSImgDirection');
+
+  rows += makeRow('📍 GPS Latitude',     gpsLat ? `${gpsLat} ${gpsLatR}` : null,  true);
+  rows += makeRow('📍 GPS Longitude',    gpsLon ? `${gpsLon} ${gpsLonR}` : null,  true);
+  rows += makeRow('🏔️ GPS Altitude',    gpsAlt,  false);
+  rows += makeRow('💨 GPS Speed',        gpsSpd,  false);
+  rows += makeRow('📅 GPS Date',         gpsDat,  false);
+  rows += makeRow('🧭 Image Direction',  gpsDire, false);
+
+  if (gpsLat && gpsLon) {
+    riskList.push(`📍 Exact GPS location found — <strong>Lat: ${gpsLat} ${gpsLatR}, Lon: ${gpsLon} ${gpsLonR}</strong> — Anyone with this image knows exactly where it was taken`);
+  }
+
+  // ── Section 6: Author & Copyright ────────────────────────────────────────
+  rows += `<div class="exif-section-title">👤 Author & Copyright Information</div>`;
+  rows += makeRow('👤 Author / Artist',   getVal('Artist'),    false);
+  rows += makeRow('©️ Copyright',         getVal('Copyright'), false);
+  rows += makeRow('📝 Image Description', getVal('ImageDescription'), false);
+  rows += makeRow('💬 User Comment',      getVal('UserComment'),     false);
+
+  // ── Show all in grid ─────────────────────────────────────────────────────
+  grid.innerHTML = `
+    <h3 class="aw-sub-title" style="margin-top:0;margin-bottom:16px;">
+      Complete Image Analysis — ${Object.keys(tags).length > 0 ? Object.keys(tags).length + ' tags found' : 'Basic info only'}
+    </h3>
+    <div class="exif-rows">${rows}</div>`;
+
+  // Risk banner
+  if (riskList.length > 0) {
+    banner.className = 'exif-risk-banner danger-banner';
+    banner.innerHTML = `<strong>🚨 ${riskList.length} Privacy Risk(s) Detected</strong>`;
+    risks.innerHTML  = riskList.map(r =>
+      `<p style="margin-bottom:10px;font-size:14px;color:#DC2626;">• ${r}</p>`
+    ).join('');
+    document.querySelector('.tool-input-card[style*="FFF5F5"]').style.display = 'block';
+  } else {
+    banner.className = 'exif-risk-banner safe-banner';
+    banner.innerHTML = '<strong>✅ No Privacy Risks Detected in This Image</strong>';
+    document.querySelector('.tool-input-card[style*="FFF5F5"]').style.display = 'none';
+  }
+}
+function convertDMS(dms) {
+  if (!dms || !Array.isArray(dms)) return 'N/A';
+  const d = dms[0].numerator / dms[0].denominator;
+  const m = dms[1].numerator / dms[1].denominator;
+  const s = dms[2].numerator / dms[2].denominator;
+  return `${d}° ${m}' ${s.toFixed(2)}"`;
+}
+</script>
+{% endblock %}

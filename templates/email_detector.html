@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% block title %}Email Phishing Scanner — CyberShield{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="page-hero-content">
+    <span class="section-eyebrow">Email Phishing Scanner</span>
+    <h1>Detect Phishing Emails</h1>
+    <p>Paste the email subject, sender address, and body content below. We scan for spoofed senders, urgency manipulation, credential harvesting, and embedded phishing links.</p>
+  </div>
+</section>
+
+<section class="section tool-section">
+  <div class="tool-container">
+
+    <div class="tool-input-card">
+      <div class="email-fields">
+
+        <div class="email-field">
+          <label class="input-label">Sender Email Address</label>
+          <input type="text" id="emailSender" placeholder="e.g. support@paypa1-verify.com" />
+        </div>
+
+        <div class="email-field">
+          <label class="input-label">Email Subject Line</label>
+          <input type="text" id="emailSubject" placeholder="e.g. URGENT: Your account has been suspended!" />
+        </div>
+
+        <div class="email-field">
+          <label class="input-label">Email Body Content</label>
+          <textarea id="emailBody" rows="7" placeholder="Paste the full email body text here...&#10;&#10;Example:&#10;Dear Customer, Your account will be suspended within 24 hours. Click here to verify: http://paypal-secure.tk/login"></textarea>
+        </div>
+
+      </div>
+      <p class="input-hint">All analysis runs on our server. No email data is stored or logged.</p>
+      <button onclick="scanEmail()" class="btn btn-primary" id="emailScanBtn" style="margin-top:16px;">
+        Scan for Phishing
+      </button>
+    </div>
+
+    <!-- Result Card -->
+    <div id="emailResult" class="result-card hidden">
+      <div class="result-header">
+        <div class="result-icon" id="emailIcon"></div>
+        <div>
+          <div class="result-verdict" id="emailVerdict"></div>
+          <div class="result-url-display">Email Phishing Analysis</div>
+        </div>
+        <div class="result-score-circle">
+          <span id="emailScore">0</span>
+          <small>/ 100</small>
+                    <small id="scoreLabel"
+            style="display:block; font-size:11px; color:var(--text-muted); margin-top:4px;"></small>
+        </div>
+      </div>
+      <div class="result-meter" style="margin:12px 0;">
+        <div class="meter-bar" id="emailMeter"></div>
+      </div>
+      <div class="result-flags" id="emailFlags"></div>
+
+      <!-- Breakdown Table -->
+      <div id="emailBreakdown" class="breakdown-table"></div>
+    </div>
+
+    <!-- Info Cards -->
+    <div class="info-cards">
+      <div class="info-card">
+        <h4>📛 Spoofed Sender</h4>
+        <p>Attackers use addresses like "support@paypa1.com" or "amazon-security@gmail.com" to appear legitimate.</p>
+      </div>
+      <div class="info-card">
+        <h4>⏰ Urgency Tactics</h4>
+        <p>Words like "URGENT", "24 hours", "suspended", "immediate action" are used to panic you into clicking.</p>
+      </div>
+      <div class="info-card">
+        <h4>🔗 Embedded Links</h4>
+        <p>Phishing emails hide malicious URLs inside "Click Here" buttons that lead to fake login pages.</p>
+      </div>
+      <div class="info-card">
+        <h4>🎁 Too Good To Be True</h4>
+        <p>Promises of prizes, refunds, or free gifts are classic social engineering lures to steal your data.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+async function scanEmail() {
+  const sender  = document.getElementById('emailSender').value.trim();
+  const subject = document.getElementById('emailSubject').value.trim();
+  const body    = document.getElementById('emailBody').value.trim();
+  const btn     = document.getElementById('emailScanBtn');
+
+  if (!sender && !subject && !body) {
+    alert('Please fill in at least one field to scan.');
+    return;
+  }
+
+  btn.textContent = 'Scanning…';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('/api/check-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sender, subject, body })
+    });
+    const data = await res.json();
+
+    const card = document.getElementById('emailResult');
+    card.className = `result-card ${data.status}`;
+
+    document.getElementById('emailVerdict').textContent = data.verdict;
+     const labelEl = document.getElementById('scoreLabel');
+      if (data.status === 'invalid' || data.status === 'error') {
+        labelEl.textContent = '';
+      } else if (data.status === 'safe') {
+        labelEl.textContent = 'Low Risk ✅';
+      } else if (data.status === 'warning') {
+        labelEl.textContent = 'Medium Risk ⚠️';
+      } else {
+        labelEl.textContent = 'High Risk 🚨';
+      }
+    document.getElementById('emailScore').textContent   = data.score;
+
+    const icons = { safe: '✅', warning: '⚠️', danger: '🚨' };
+    document.getElementById('emailIcon').textContent = icons[data.status] || '❓';
+
+    const bar = document.getElementById('emailMeter');
+    bar.style.width   = data.score + '%';
+    bar.className     = `meter-bar ${data.status}`;
+
+    const flagsEl = document.getElementById('emailFlags');
+    if (data.flags.length) {
+      flagsEl.innerHTML = '<strong>Detected Issues:</strong><ul>' +
+        data.flags.map(f => `<li>${f}</li>`).join('') + '</ul>';
+    } else {
+      flagsEl.innerHTML = '<p style="color:var(--safe-color)">✓ No phishing indicators detected.</p>';
+    }
+
+    // Breakdown
+    const bk = document.getElementById('emailBreakdown');
+    if (data.breakdown && data.breakdown.length) {
+      bk.innerHTML = '<h4 style="margin:16px 0 10px;font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;">Analysis Breakdown</h4>' +
+        '<div class="breakdown-rows">' +
+        data.breakdown.map(item => `
+          <div class="breakdown-row">
+            <span class="bd-label">${item.check}</span>
+            <span class="bd-status ${item.ok ? 'bd-ok' : 'bd-fail'}">${item.ok ? '✓ Pass' : '✗ Fail'}</span>
+            <span class="bd-note">${item.note}</span>
+          </div>`).join('') +
+        '</div>';
+    }
+
+  } catch (err) {
+    alert('Scan failed. Please try again.');
+  } finally {
+    btn.textContent = 'Scan for Phishing';
+    btn.disabled = false;
+  }
+}
+</script>
+{% endblock %}

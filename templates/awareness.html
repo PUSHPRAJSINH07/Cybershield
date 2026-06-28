@@ -1,0 +1,837 @@
+
+{% extends "base.html" %}
+{% block title %}Cyber Awareness — CyberShield{% endblock %}
+
+{% block content %}
+
+
+
+<!-- ── Quick Jump Nav ─────────────────────────────────────────────────────── -->
+
+
+
+<section class="aw-page-hero">
+  <div class="aw-hero-inner">
+    <div class="aw-hero-badge">
+      <span>🛡️</span> Cyber Awareness Guide 
+    </div>
+    <h1 id="aw-typewriter">
+     <br>
+      <span class="aw-hero-red"></span>
+    </h1>
+    <p id="aw-sub-text" style="opacity:0;transition:opacity 0.6s ease;">
+      Cybercrime in India crossed ₹55,659.81 crore from 2020 to 2025 This guide breaks down every major threat —
+      what it looks like, how it works, and exactly what to do to protect yourself and your family.
+    </p>
+    <div class="aw-hero-stats">
+      <div class="aw-hstat">
+        <span class="aw-hstat-num">₹55,659.81 Cr</span>
+        <span class="aw-hstat-label">Lost to cyber fraud<br>from 2020 to 2025</span>
+      </div>
+      <div class="aw-hstat">
+        <span class="aw-hstat-num">8</span>
+        <span class="aw-hstat-label">Major threat types<br>covered here</span>
+      </div>
+      <div class="aw-hstat">
+        <span class="aw-hstat-num">1930</span>
+        <span class="aw-hstat-label">National Cyber<br>Helpline</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  1. PHISHING                                                        -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<section class="threat-section" id="phishing">
+  <!-- Banner -->
+  <div class="threat-banner-wrap">
+    <div class="threat-banner-placeholder phishing-bg-gradient">🎣</div>
+    <!-- <img src="p.png" alt="Phishing" class="threat-banner-img"> -->
+    <div class="threat-banner-overlay">
+      <div class="threat-banner-text">
+        <span class="threat-banner-eyebrow phishing-eyebrow">🎣 Threat #1</span>
+        <h2>Phishing Attacks</h2>
+        <p>Fake messages designed to steal your credentials, money, and identity by impersonating banks, government bodies, and trusted brands.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="threat-content">
+    <!-- Key Facts -->
+    <div class="key-facts">
+      <div class="key-fact phishing-fact"><span class="key-fact-num">80K+</span><span class="key-fact-label">Phishing cases in India 2025</span></div>
+      <div class="key-fact phishing-fact"><span class="key-fact-num">3.4B</span><span class="key-fact-label">Phishing emails sent daily worldwide</span></div>
+      <div class="key-fact phishing-fact"><span class="key-fact-num">36%</span><span class="key-fact-label">Of breaches involve phishing</span></div>
+      <div class="key-fact phishing-fact"><span class="key-fact-num">97%</span><span class="key-fact-label">Users can't identify a phishing email</span></div>
+    </div>
+
+    <!-- Two-col: what is it + image -->
+    <div class="threat-two-col">
+      <div class="threat-text-block">
+        <h3>What is Phishing?</h3>
+        <p>Phishing is when cybercriminals send fake emails, SMS (smishing), or WhatsApp messages pretending to be your bank, HDFC, SBI, IRCTC, or even UIDAI. They create a sense of urgency — "Your account will be blocked!" — to make you click a fake link and enter your credentials.</p>
+        <p>Once you enter your username, password, or OTP on their fake page, attackers get instant access to your real account and drain your money within minutes.</p>
+        <p>India saw a 175% rise in phishing attempts in 2023, with most targeting UPI and net banking users through fake government portals.</p>
+      </div>
+      <div class="threat-image-block">
+        
+      <img src="{{ url_for('static', filename='photos/p.png') }}" alt="Phishing">
+      </div>
+    </div>
+
+    <!-- Warning Signs -->
+    <p class="warning-signs-title">⚠️ Warning Signs to Watch For</p>
+    <div class="warning-grid">
+      <div class="warning-item phishing-warn"><span class="warn-icon">📧</span><div class="warn-text"><strong>Suspicious sender address</strong><p>Email from hdfc-support@gmail.com or sbi.secure@outlook.com — real banks never use free email providers.</p></div></div>
+      <div class="warning-item phishing-warn"><span class="warn-icon">🚨</span><div class="warn-text"><strong>Urgency & fear tactics</strong><p>"Your account will be suspended in 24 hours" — designed to bypass your rational thinking.</p></div></div>
+      <div class="warning-item phishing-warn"><span class="warn-icon">🔗</span><div class="warn-text"><strong>Mismatched URLs</strong><p>Hover over links — if it says hdfc.com but the URL shows hdfcbanck.xyz, it's fake.</p></div></div>
+      <div class="warning-item phishing-warn"><span class="warn-icon">🏛️</span><div class="warn-text"><strong>Fake government portals</strong><p>Fake PM Kisan, Aadhaar update, or income tax refund pages that look exactly like the real site.</p></div></div>
+      <div class="warning-item phishing-warn"><span class="warn-icon">🎁</span><div class="warn-text"><strong>Too-good-to-be-true offers</strong><p>"You've won ₹50 lakh in the KBC lottery" — a classic bait to collect your Aadhaar and bank details.</p></div></div>
+      <div class="warning-item phishing-warn"><span class="warn-icon">📎</span><div class="warn-text"><strong>Unexpected attachments</strong><p>An "invoice" or "court notice" attachment you never expected — likely contains malware.</p></div></div>
+    </div>
+
+    <!-- Do's and Don'ts -->
+    <div class="dos-donts">
+      <div class="do-col">
+        <div class="col-header">✅ What To Do</div>
+        <div class="col-list">
+          <div class="col-item"><span class="col-item-icon">✅</span> Always verify sender email addresses carefully before clicking</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Go directly to the official website by typing the URL yourself</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Enable 2-factor authentication on all accounts</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Use CyberShield's URL scanner before visiting any suspicious link</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Report phishing to CERT-In at incidents@cert-in.org.in</div>
+        </div>
+      </div>
+      <div class="dont-col">
+        <div class="col-header">❌ What NOT To Do</div>
+        <div class="col-list">
+          <div class="col-item"><span class="col-item-icon">❌</span> Never click links in unsolicited emails or SMS</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Never enter your OTP, password, or PIN on a page you reached via a link</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Don't trust caller ID — numbers can be spoofed to look official</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Never download attachments from unknown senders</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Don't share Aadhaar or PAN details via email or WhatsApp</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real Case -->
+    <div class="case-spotlight phishing-case-box">
+      <div class="case-spotlight-icon">📰</div>
+      <div>
+        <h4>Real Case: Ahmedabad IT Professional Loses ₹8.5 Lakh</h4>
+        <p>A 34-year-old software engineer received an SMS from what appeared to be SBI, warning his account would be frozen. He clicked the link, entered his net banking credentials on a fake page, and within 3 minutes ₹8.5 lakh was transferred out in 4 transactions.</p>
+        <p><strong>Lesson:</strong> Banks will NEVER ask you to verify your account by clicking a link in an SMS. Always call the official bank number (printed on your card) directly.</p>
+      </div>
+    </div>
+
+    <!-- CTA Strip -->
+    <div class="protection-strip phishing-strip">
+      <div class="protection-strip-text">
+        <strong>Scan a suspicious link right now</strong>
+        <span>CyberShield's URL scanner detects phishing domains instantly — free, no account needed.</span>
+      </div>
+      <a href="{{ url_for('url_detector') }}" class="btn btn-primary" style="background:white;color:#DC2626;box-shadow:none;">Scan Link →</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  2. MALWARE                                                         -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<section class="threat-section" id="malware">
+  <div class="threat-banner-wrap">
+    <div class="threat-banner-placeholder malware-bg-gradient">💀</div>
+    <div class="threat-banner-overlay">
+      <div class="threat-banner-text">
+        <span class="threat-banner-eyebrow malware-eyebrow">💀 Threat #2</span>
+        <h2>Malware & Ransomware</h2>
+        <p>Malicious software that hijacks your device, encrypts your files, and demands payment — often destroying everything even after you pay.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="threat-content">
+    <div class="key-facts">
+      <div class="key-fact malware-fact"><span class="key-fact-num">5th</span><span class="key-fact-label">India is 5th most attacked country globally in 2023</span></div>
+      <div class="key-fact malware-fact"><span class="key-fact-num">165%</span><span class="key-fact-label">Rise in ransomware attacks in India year-by-year </span></div>
+      <div class="key-fact malware-fact"><span class="key-fact-num">₹4 Cr</span><span class="key-fact-label">Average ransom demand per attack</span></div>
+      <div class="key-fact malware-fact"><span class="key-fact-num">70%</span><span class="key-fact-label">Attacks enter via email attachments</span></div>
+    </div>
+
+    <div class="threat-two-col">
+      <div class="threat-image-block">
+        
+        <img src="{{ url_for('static', filename='photos/m.png') }}" alt="Ransomware">
+      </div>
+      <div class="threat-text-block">
+        <h3>What is Malware?</h3>
+        <p>Malware (malicious software) includes viruses, trojans, spyware, adware, and ransomware. It secretly installs on your device when you download cracked software, click fake ads, or open email attachments.</p>
+        <p>Ransomware is the most devastating type — it encrypts all your files and demands payment (usually in cryptocurrency) to restore access. AIIMS Delhi was crippled for days in 2022 after a ransomware attack.</p>
+        <p>Spyware silently records your keystrokes, capturing banking passwords and OTPs without you knowing anything is wrong.</p>
+      </div>
+    </div>
+
+    <p class="warning-signs-title">⚠️ Warning Signs to Watch For</p>
+    <div class="warning-grid">
+      <div class="warning-item malware-warn"><span class="warn-icon">🐌</span><div class="warn-text"><strong>Sudden slowdowns</strong><p>Your device becomes unusually slow — malware running in the background consumes resources.</p></div></div>
+      <div class="warning-item malware-warn"><span class="warn-icon">🔒</span><div class="warn-text"><strong>Files become inaccessible</strong><p>You try to open a file and get an error — ransomware may already be encrypting your data.</p></div></div>
+      <div class="warning-item malware-warn"><span class="warn-icon">💸</span><div class="warn-text"><strong>Unexpected data charges</strong><p>Spyware sends data to attackers, consuming mobile data in the background.</p></div></div>
+      <div class="warning-item malware-warn"><span class="warn-icon">🖥️</span><div class="warn-text"><strong>Pop-ups and fake alerts</strong><p>"Your PC is infected! Call this number" — fake antivirus alerts are themselves malware delivery tools.</p></div></div>
+      <div class="warning-item malware-warn"><span class="warn-icon">🔋</span><div class="warn-text"><strong>Battery draining fast</strong><p>On mobile, mining malware runs cryptocurrency mining on your phone using your battery and data.</p></div></div>
+      <div class="warning-item malware-warn"><span class="warn-icon">📡</span><div class="warn-text"><strong>Unknown network activity</strong><p>Network monitor shows traffic at odd hours when you're not using any apps.</p></div></div>
+    </div>
+
+    <div class="dos-donts">
+      <div class="do-col">
+        <div class="col-header">✅ What To Do</div>
+        <div class="col-list">
+          <div class="col-item"><span class="col-item-icon">✅</span> Keep OS and all apps updated — patches fix security holes malware exploits</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Install apps only from Google Play Store or Apple App Store</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Take regular backups to an offline drive or secure cloud storage</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Use reputable antivirus — Malwarebytes, Bitdefender, or Windows Defender</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Disconnect from internet immediately if you suspect ransomware</div>
+        </div>
+      </div>
+      <div class="dont-col">
+        <div class="col-header">❌ What NOT To Do</div>
+        <div class="col-list">
+          <div class="col-item"><span class="col-item-icon">❌</span> Never download cracked software, movies, or games from unofficial sites</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Don't enable "Install from unknown sources" unless you absolutely know what you're doing</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Never pay the ransom — there's no guarantee you'll get your files back</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Don't plug in random USB drives you find or receive as gifts</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Never click "Allow" on browser notification requests from unknown websites</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-spotlight malware-case-box">
+      <div class="case-spotlight-icon">🏥</div>
+      <div>
+        <h4>Real Case: AIIMS Delhi Ransomware Attack — 2022</h4>
+        <p>India's premier hospital had its entire network encrypted by ransomware. Patient records of millions were held hostage. The attackers demanded ₹200 crore in cryptocurrency. Hospital operations switched to manual paper-based systems for weeks, delaying critical patient care.</p>
+        <p><strong>Lesson:</strong> Even large institutions fall victim. For individuals, regular offline backups are the only guaranteed protection against ransomware.</p>
+      </div>
+    </div>
+
+    <div class="protection-strip malware-strip">
+      <div class="protection-strip-text">
+        <strong>Check suspicious email links before clicking</strong>
+        <span>Use the Email Scanner to detect malware delivery attempts in phishing messages.</span>
+      </div>
+      <a href="{{ url_for('email_detector') }}" class="btn btn-primary" style="background:white;color:#7C2020;box-shadow:none;">Scan Email →</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  3. SOCIAL ENGINEERING                                              -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<section class="threat-section" id="social">
+  <div class="threat-banner-wrap">
+    <div class="threat-banner-placeholder social-bg-gradient">🎭</div>
+    <div class="threat-banner-overlay">
+      <div class="threat-banner-text">
+        <span class="threat-banner-eyebrow social-eyebrow">🎭 Threat #3</span>
+        <h2>Social Engineering</h2>
+        <p>Attackers manipulate human psychology rather than technology — exploiting trust, fear, and urgency to extract sensitive information.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="threat-content">
+    <div class="key-facts">
+      <div class="key-fact social-fact"><span class="key-fact-num">95%</span><span class="key-fact-label">Of all cyber breaches involve human manipulation</span></div>
+      <div class="key-fact social-fact"><span class="key-fact-num">₹1 Cr</span><span class="key-fact-label">Average loss per corporate social engineering attack</span></div>
+      <div class="key-fact social-fact"><span class="key-fact-num">77%</span><span class="key-fact-label">Targeted attacks use social engineering as entry point</span></div>
+      <div class="key-fact social-fact"><span class="key-fact-num">6</span><span class="key-fact-label">Psychological triggers attackers exploit</span></div>
+    </div>
+
+    <div class="threat-two-col">
+      <div class="threat-text-block">
+        <h3>What is Social Engineering?</h3>
+        <p>Social engineering exploits human psychology rather than system vulnerabilities. A caller pretends to be from your bank's fraud department, creating panic: "Your account is being misused, give me your OTP to block it." That OTP is exactly what gives them access.</p>
+        <p>Common forms include vishing (voice phishing calls), pretexting (inventing a believable scenario), baiting (leaving infected USB drives), and quid pro quo (offering something in exchange for information).</p>
+        <p>The six psychological triggers attackers exploit: Authority, Urgency, Social proof, Scarcity, Liking, and Reciprocity.</p>
+      </div>
+      <div class="threat-image-block">
+      
+        <img src="{{ url_for('static', filename='photos/e.png') }}" alt="Social Engineering">
+      </div>
+    </div>
+
+    <p class="warning-signs-title">⚠️ Warning Signs to Watch For</p>
+    <div class="warning-grid">
+      <div class="warning-item social-warn"><span class="warn-icon">📞</span><div class="warn-text"><strong>Unexpected calls from "officials"</strong><p>CBI, police, TRAI, or bank officers calling out of nowhere demanding immediate action.</p></div></div>
+      <div class="warning-item social-warn"><span class="warn-icon">⏱️</span><div class="warn-text"><strong>Artificial urgency</strong><p>"You have 30 minutes or we'll arrest you" — real authorities don't demand immediate action over phone.</p></div></div>
+      <div class="warning-item social-warn"><span class="warn-icon">🔐</span><div class="warn-text"><strong>Requests for OTP or password</strong><p>No legitimate organization will ever ask for your OTP, CVV, or net banking password.</p></div></div>
+      <div class="warning-item social-warn"><span class="warn-icon">🤫</span><div class="warn-text"><strong>"Keep this confidential"</strong><p>Scammers ask you to not tell family members — so no one can warn you it's a scam.</p></div></div>
+    </div>
+
+    <div class="dos-donts">
+      <div class="do-col">
+        <div class="col-header">✅ What To Do</div>
+        <div class="col-list">
+          <div class="col-item"><span class="col-item-icon">✅</span> Hang up and call back on the official number — verify the caller's identity</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Tell a trusted family member or friend before taking any action</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Remember: no real bank, police, or government body will call to ask for OTP</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Trust your gut — if something feels wrong, it probably is</div>
+        </div>
+      </div>
+      <div class="dont-col">
+        <div class="col-header">❌ What NOT To Do</div>
+        <div class="col-list">
+          <div class="col-item"><span class="col-item-icon">❌</span> Never share OTP, CVV, or passwords with anyone on phone</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Don't act immediately under pressure — take time to verify</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Don't trust caller ID — it can be spoofed to show bank numbers</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Never install remote access apps (AnyDesk, TeamViewer) when someone asks over phone</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-spotlight social-case-box">
+      <div class="case-spotlight-icon">👮</div>
+      <div>
+        <h4>Real Case: "Digital Arrest" Scam — Mumbai Professor Loses ₹3.8 Lakh</h4>
+        <p>A retired professor received a call from someone claiming to be a CBI officer. They said her Aadhaar was linked to a money laundering case and she was under "digital arrest" — she must stay on video call or face imprisonment. She sent ₹3.8 lakh in "bail money" over 4 days before her family intervened.</p>
+        <p><strong>Lesson:</strong> "Digital arrest" doesn't exist in Indian law. CBI and police never conduct investigations over WhatsApp video calls.</p>
+      </div>
+    </div>
+
+    <div class="protection-strip social-strip">
+      <div class="protection-strip-text">
+        <strong>Analyze suspicious emails for manipulation tactics</strong>
+        <span>Our Email Scanner detects urgency language, spoofed senders, and psychological manipulation.</span>
+      </div>
+      <a href="{{ url_for('email_detector') }}" class="btn btn-primary" style="background:white;color:#059669;box-shadow:none;">Scan Email →</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  4. UPI FRAUD                                                       -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<section class="threat-section" id="upi">
+  <div class="threat-banner-wrap">
+    <div class="threat-banner-placeholder upi-bg-gradient">📱</div>
+    <div class="threat-banner-overlay">
+      <div class="threat-banner-text">
+        <span class="threat-banner-eyebrow upi-eyebrow">📱 Threat #4</span>
+        <h2>UPI & OTP Fraud</h2>
+        <p>Scammers exploit India's UPI revolution — tricking users into sharing OTPs, scanning QR codes, or approving payment requests that drain their accounts instantly.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="threat-content">
+    <div class="key-facts">
+      <div class="key-fact upi-fact"><span class="key-fact-num">₹1,087 Cr</span><span class="key-fact-label">Lost to UPI fraud in India 2023</span></div>
+      <div class="key-fact upi-fact"><span class="key-fact-num">95K+</span><span class="key-fact-label">UPI fraud complaints filed 2023</span></div>
+      <div class="key-fact upi-fact"><span class="key-fact-num">45 Sec</span><span class="key-fact-label">Average time to drain an account after OTP theft</span></div>
+      <div class="key-fact upi-fact"><span class="key-fact-num">60%</span><span class="key-fact-label">Victims are aged 18–35 years</span></div>
+    </div>
+
+    <div class="threat-two-col">
+      <div class="threat-image-block">
+        <img src="{{ url_for('static', filename='photos/u.png') }}" alt="UPI Fraud">
+      </div>
+      <div class="threat-text-block">
+        <h3>How UPI Fraud Works</h3>
+        <p>The "collect request" scam: A scammer sends you a UPI collect request saying "Please approve ₹1 to verify your account for the refund." Approving a collect request means MONEY GOES OUT from your account, not in.</p>
+        <p>The "QR code" scam: You're selling something on OLX. Buyer says "I'm sending money, scan this QR code to receive it." Scanning a payment QR code to receive money makes no sense — scanning sends money out.</p>
+        <p>OTP phishing: Caller says they're from your telecom company and need your OTP to "link your SIM." They use it to complete a UPI transaction.</p>
+      </div>
+    </div>
+
+    <p class="warning-signs-title">⚠️ Red Flags in UPI Transactions</p>
+    <div class="warning-grid">
+      <div class="warning-item upi-warn"><span class="warn-icon">📲</span><div class="warn-text"><strong>Collect requests for "verification"</strong><p>No legitimate refund, prize, or verification requires you to approve an incoming collect request.</p></div></div>
+      <div class="warning-item upi-warn"><span class="warn-icon">📷</span><div class="warn-text"><strong>"Scan this to receive money"</strong><p>You never need to scan a QR code to receive money. Scanning always means sending money out.</p></div></div>
+      <div class="warning-item upi-warn"><span class="warn-icon">🔢</span><div class="warn-text"><strong>OTP requested to process refund</strong><p>Refunds are processed automatically by banks. No OTP is needed from your side for a refund.</p></div></div>
+      <div class="warning-item upi-warn"><span class="warn-icon">📞</span><div class="warn-text"><strong>Unknown caller asking your UPI PIN</strong><p>Your UPI PIN is entered only by you in your own app. No bank or UPI company will ever ask for it.</p></div></div>
+    </div>
+
+    <div class="dos-donts">
+      <div class="do-col">
+        <div class="col-header">✅ What To Do</div>
+        <div class="col-list">
+          <div class="col-item"><span class="col-item-icon">✅</span> Always read the full UPI screen before entering your PIN — is money going OUT or IN?</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Block your UPI/bank immediately at 1800 (call your bank helpline) if fraud occurs</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Report to cybercrime.gov.in and call 1930 immediately after fraud</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Set daily UPI transaction limits in your banking app</div>
+        </div>
+      </div>
+      <div class="dont-col">
+        <div class="col-header">❌ What NOT To Do</div>
+        <div class="col-list">
+          <div class="col-item"><span class="col-item-icon">❌</span> Never enter your UPI PIN on a collect request or to "receive" money</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Never scan QR codes sent by strangers to "receive" payment</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Don't share your UPI PIN, OTP, or account number with anyone</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Never install apps a stranger asks you to install to "process your refund"</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-spotlight upi-case-box">
+      <div class="case-spotlight-icon">💸</div>
+      <div>
+        <h4>Real Case: OLX Scam — Army Officer Loses ₹1.5 Lakh</h4>
+        <p>An Army officer listed a sofa set on OLX. A buyer claiming to be a fellow soldier sent a collect request with a note "payment for sofa." The officer approved it thinking money was coming in. ₹1.5 lakh was debited instantly. The scammer had sent multiple collect requests and the officer approved all of them.</p>
+        <p><strong>Lesson:</strong> Approving a UPI collect request always means money goes OUT. For selling, just share your UPI ID and ask the buyer to send — never approve collect requests from strangers.</p>
+      </div>
+    </div>
+
+    <div class="protection-strip upi-strip">
+      <div class="protection-strip-text">
+        <strong>Scan payment links before trusting them</strong>
+        <span>CyberShield's URL scanner detects fake payment portals and phishing pages targeting UPI users.</span>
+      </div>
+      <a href="{{ url_for('url_detector') }}" class="btn btn-primary" style="background:white;color:#D97706;box-shadow:none;">Scan Link →</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  5. DEEPFAKE                                                        -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<section class="threat-section" id="deepfake">
+  <div class="threat-banner-wrap">
+    <div class="threat-banner-placeholder deepfake-bg-gradient">🤖</div>
+    <div class="threat-banner-overlay">
+      <div class="threat-banner-text">
+        <span class="threat-banner-eyebrow deepfake-eyebrow">🤖 Threat #5</span>
+        <h2>AI Deepfake Scams</h2>
+        <p>Artificial intelligence clones the face and voice of your relatives — creating real-time video calls that are indistinguishable from the real person.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="threat-content">
+    <div class="key-facts">
+      <div class="key-fact deepfake-fact"><span class="key-fact-num">230%</span><span class="key-fact-label">Rise in deepfake scam cases in India </span></div>
+      <div class="key-fact deepfake-fact"><span class="key-fact-num">3 Min</span><span class="key-fact-label">Is enough video footage to clone someone's face</span></div>
+      <div class="key-fact deepfake-fact"><span class="key-fact-num">96%</span><span class="key-fact-label">Of deepfakes created target financial fraud</span></div>
+      <div class="key-fact deepfake-fact"><span class="key-fact-num">₹40L+</span><span class="key-fact-label">Largest single deepfake fraud in India</span></div>
+    </div>
+
+    <div class="threat-two-col">
+      <div class="threat-text-block">
+        <h3>How Deepfake Scams Work</h3>
+        <p>Scammers harvest your relative's videos from social media — Instagram reels, Facebook posts, WhatsApp status updates. Using AI tools, they clone the face and voice in minutes.</p>
+        <p>They then video call you as your relative in an "emergency": "I had an accident, I'm in police custody, please transfer money immediately and don't tell anyone." The face and voice match perfectly.</p>
+        <p>Audio deepfakes (voice cloning) are even more common and just as dangerous — a single WhatsApp audio message is enough to clone someone's voice.</p>
+      </div>
+      <div class="threat-image-block">
+       
+        <img src="{{ url_for('static', filename='photos/a.png') }}" alt="Deepfake Scam">
+      </div>
+    </div>
+
+    <p class="warning-signs-title">⚠️ How to Detect a Deepfake Call</p>
+    <div class="warning-grid">
+      <div class="warning-item deepfake-warn"><span class="warn-icon">👁️</span><div class="warn-text"><strong>Unnatural blinking or eye movement</strong><p>Early deepfakes blink incorrectly or eyes don't track naturally. Look for it.</p></div></div>
+      <div class="warning-item deepfake-warn"><span class="warn-icon">🗣️</span><div class="warn-text"><strong>Slightly off lip sync</strong><p>The mouth movement may not perfectly match the words, especially on complex consonants.</p></div></div>
+      <div class="warning-item deepfake-warn"><span class="warn-icon">🌟</span><div class="warn-text"><strong>Weird lighting or blurry edges</strong><p>The face-swap boundary around hairline and neck often shows artifacts or inconsistent lighting.</p></div></div>
+      <div class="warning-item deepfake-warn"><span class="warn-icon">❓</span><div class="warn-text"><strong>They can't answer personal questions</strong><p>Ask something only your real relative would know — a childhood memory, a family in-joke.</p></div></div>
+    </div>
+
+    <div class="dos-donts">
+      <div class="do-col">
+        <div class="col-header">✅ What To Do</div>
+        <div class="col-list">
+          <div class="col-item"><span class="col-item-icon">✅</span> Set a family secret code word — agree on a word only family members know to verify identity</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Always hang up and call back on the known number before sending any money</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Make social media accounts private — limit video footage available to scammers</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Be suspicious of any emergency request involving money transfer, even if face matches</div>
+        </div>
+      </div>
+      <div class="dont-col">
+        <div class="col-header">❌ What NOT To Do</div>
+        <div class="col-list">
+          <div class="col-item"><span class="col-item-icon">❌</span> Don't trust a face on a video call alone — deepfakes are indistinguishable to most people</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Don't transfer money before calling them on their real number through your contacts</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Don't keep public video content of family members on social media without privacy settings</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Never trust "don't tell anyone" — that's always a manipulation tactic</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-spotlight deepfake-case-box">
+      <div class="case-spotlight-icon">😱</div>
+      <div>
+        <h4>Real Case: Kerala Businessman Loses ₹40 Lakh to AI Voice Clone</h4>
+        <p>A businessman received a WhatsApp call from a number he saved as his manager's contact. The voice was identical to his manager, claiming he was stranded abroad and urgently needed ₹40 lakh wired to a foreign account. The businessman transferred the money before calling his manager on a different number — to find the real manager had no idea what happened.</p>
+        <p><strong>Lesson:</strong> Establish a family code word system. A single agreed-upon word that no AI can know can save lakhs in seconds.</p>
+      </div>
+    </div>
+
+    <div class="protection-strip deepfake-strip">
+      <div class="protection-strip-text">
+        <strong>Protect your accounts with strong passwords</strong>
+        <span>Strong passwords and 2FA prevent scammers from accessing your accounts to harvest footage.</span>
+      </div>
+      <a href="{{ url_for('password_checker') }}" class="btn btn-primary" style="background:white;color:#7C3AED;box-shadow:none;">Check Password →</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  6. FAKE INVESTMENT                                                 -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<section class="threat-section" id="investment">
+  <div class="threat-banner-wrap">
+    <div class="threat-banner-placeholder investment-bg-gradient">📈</div>
+    <div class="threat-banner-overlay">
+      <div class="threat-banner-text">
+        <span class="threat-banner-eyebrow investment-eyebrow">📈 Threat #6</span>
+        <h2>Fake Investment Scams</h2>
+        <p>Fraudulent trading platforms and crypto apps that show you massive fake profits — then lock your funds and demand "taxes" before disappearing forever.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="threat-content">
+    <div class="key-facts">
+      <div class="key-fact investment-fact"><span class="key-fact-num">₹500 Cr</span><span class="key-fact-label">Lost to fake investment apps in H1 2024</span></div>
+      <div class="key-fact investment-fact"><span class="key-fact-num">30%</span><span class="key-fact-label">Monthly "guaranteed returns" promised by scammers</span></div>
+      <div class="key-fact investment-fact"><span class="key-fact-num">72%</span><span class="key-fact-label">Victims recruited through WhatsApp groups</span></div>
+      <div class="key-fact investment-fact"><span class="key-fact-num">₹0</span><span class="key-fact-label">Recovered by most victims after the scam</span></div>
+    </div>
+
+    <div class="threat-two-col">
+      <div class="threat-image-block">
+        <img src="{{ url_for('static', filename='photos/invest.png') }}" alt="Fake Investment Scam">
+      </div>
+      <div class="threat-text-block">
+        <h3>How Fake Investment Scams Work</h3>
+        <p>You get added to a WhatsApp group by a stranger. A "mentor" (fake finance expert) shares daily stock tips. You see others in the group making money (they're all in on it). You invest a small amount — and the fake app shows you amazing profits.</p>
+        <p>Encouraged by fake profits, you invest more. When you try to withdraw, you're told you must pay "30% tax" or "verification fee" first. After you pay that, another fee appears. The cycle continues until you stop paying — then the app disappears.</p>
+        <p>These are called "pig butchering" scams — they fatten you up with fake gains before slaughtering your savings.</p>
+      </div>
+    </div>
+
+    <p class="warning-signs-title">⚠️ Warning Signs to Watch For</p>
+    <div class="warning-grid">
+      <div class="warning-item investment-warn"><span class="warn-icon">💰</span><div class="warn-text"><strong>Guaranteed high returns</strong><p>"Guaranteed 40% monthly returns" — legitimate investments never guarantee high returns. SEBI-registered advisors are prohibited from making such promises.</p></div></div>
+      <div class="warning-item investment-warn"><span class="warn-icon">💬</span><div class="warn-text"><strong>WhatsApp/Telegram recruitment</strong><p>Being added to investment groups by strangers is a classic entry point for these scams.</p></div></div>
+      <div class="warning-item investment-warn"><span class="warn-icon">📱</span><div class="warn-text"><strong>Unknown apps not on Play Store</strong><p>Fake trading apps are distributed via APK links outside the Play Store — a major red flag.</p></div></div>
+      <div class="warning-item investment-warn"><span class="warn-icon">🔒</span><div class="warn-text"><strong>"Pay to withdraw" demands</strong><p>Any real investment platform allows you to withdraw your money without upfront "tax" or "fee" payments.</p></div></div>
+    </div>
+
+    <div class="dos-donts">
+      <div class="do-col">
+        <div class="col-header">✅ What To Do</div>
+        <div class="col-list">
+          <div class="col-item"><span class="col-item-icon">✅</span> Verify broker/advisor registration at sebi.gov.in before investing</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Use only SEBI-registered platforms like Zerodha, Groww, Upstox</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Withdraw a small test amount first — if it's blocked, stop investing immediately</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Report to SEBI SCORES portal and cybercrime.gov.in</div>
+        </div>
+      </div>
+      <div class="dont-col">
+        <div class="col-header">❌ What NOT To Do</div>
+        <div class="col-list">
+          <div class="col-item"><span class="col-item-icon">❌</span> Never trust "guaranteed returns" — real investments carry real risk</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Don't install investment apps from links sent on WhatsApp or Telegram</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Never pay "tax" or "fee" to unlock your own investment profits</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Don't invest with strangers who contact you unsolicited</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-spotlight investment-case-box">
+      <div class="case-spotlight-icon">📉</div>
+      <div>
+        <h4>Real Case: Bengaluru Software Engineer Loses ₹70 Lakh</h4>
+        <p>A software engineer was added to a WhatsApp group by a woman who became romantically interested in him. She introduced him to a "special investment platform" showing him 3x returns. He invested ₹70 lakh over 4 months — all showing amazing profits on the fake app. When he tried to withdraw, he was asked for ₹8 lakh in "income tax." The platform vanished the next day.</p>
+        <p><strong>Lesson:</strong> This is a "pig butchering" scam. The romantic interest, the investment group, and the profits were all part of a coordinated script.</p>
+      </div>
+    </div>
+
+    <div class="protection-strip investment-strip">
+      <div class="protection-strip-text">
+        <strong>Scan suspicious investment platform URLs</strong>
+        <span>Check if an investment website is legitimate before entering any personal details.</span>
+      </div>
+      <a href="{{ url_for('url_detector') }}" class="btn btn-primary" style="background:white;color:#2563EB;box-shadow:none;">Scan URL →</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  7. FAKE JOB SCAMS                                                  -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<section class="threat-section" id="job">
+  <div class="threat-banner-wrap">
+    <div class="threat-banner-placeholder job-bg-gradient">💼</div>
+    <div class="threat-banner-overlay">
+      <div class="threat-banner-text">
+        <span class="threat-banner-eyebrow job-eyebrow">💼 Threat #7</span>
+        <h2>Fake Job Scams</h2>
+        <p>Fraudulent job offers from fake MNCs that steal your personal documents to open loans in your name — leaving you with debt you never took.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="threat-content">
+    <div class="key-facts">
+      <div class="key-fact job-fact"><span class="key-fact-num">22K+</span><span class="key-fact-label">Fake job scam victims in India 2023</span></div>
+      <div class="key-fact job-fact"><span class="key-fact-num">₹8.5 Cr</span><span class="key-fact-label">Lost to job fraud per month in 2023</span></div>
+      <div class="key-fact job-fact"><span class="key-fact-num">68%</span><span class="key-fact-label">Victims are students or recent graduates</span></div>
+      <div class="key-fact job-fact"><span class="key-fact-num">₹2-5L</span><span class="key-fact-label">Average loan taken in victim's name</span></div>
+    </div>
+
+    <div class="threat-two-col">
+      <div class="threat-text-block">
+        <h3>How Fake Job Scams Work</h3>
+        <p>You apply for a job on a fake portal that mimics Indeed, Naukri, or LinkedIn. You get an instant "offer letter" via WhatsApp from a fake HR of Amazon, Google, or Infosys. The "work from home" salary is unbelievably high.</p>
+        <p>For "background verification" they ask for Aadhaar card, PAN card, bank statement, and a cancelled cheque. Once they have these documents, your identity is stolen — they take loans, open accounts, and commit fraud in your name.</p>
+        <p>Another variant asks you to pay "security deposit" or "training kit" fees before joining — and disappears after payment.</p>
+      </div>
+      <div class="threat-image-block">
+        
+        <img src="{{ url_for('static', filename='photos/j.png') }}" alt="Fake Job Scam">
+      </div>
+    </div>
+
+    <p class="warning-signs-title">⚠️ Warning Signs of Fake Job Offers</p>
+    <div class="warning-grid">
+      <div class="warning-item job-warn"><span class="warn-icon">💵</span><div class="warn-text"><strong>Unbelievably high salary</strong><p>"₹1.5 lakh/month work from home for freshers" — real fresher salaries in India rarely exceed ₹40K.</p></div></div>
+      <div class="warning-item job-warn"><span class="warn-icon">📋</span><div class="warn-text"><strong>Documents demanded before joining</strong><p>No legitimate company asks for Aadhaar, PAN, and bank details before an in-person interview and offer letter.</p></div></div>
+      <div class="warning-item job-warn"><span class="warn-icon">💳</span><div class="warn-text"><strong>Upfront payment required</strong><p>"Pay ₹2000 for the laptop/training kit and we'll reimburse it" — legitimate companies never ask employees to pay upfront.</p></div></div>
+      <div class="warning-item job-warn"><span class="warn-icon">📧</span><div class="warn-text"><strong>Gmail/Yahoo email from "MNC"</strong><p>Real companies like Amazon, Google, TCS communicate from their official @company.com email domains only.</p></div></div>
+    </div>
+
+    <div class="dos-donts">
+      <div class="do-col">
+        <div class="col-header">✅ What To Do</div>
+        <div class="col-list">
+          <div class="col-item"><span class="col-item-icon">✅</span> Verify the company exists at MCA21 portal (mca.gov.in) — check CIN number</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Call the company's official helpline (from their official website) to verify the job offer</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Check CIBIL report regularly — if loans appear you didn't take, report immediately</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Only apply through official websites or verified portals like Naukri, LinkedIn</div>
+        </div>
+      </div>
+      <div class="dont-col">
+        <div class="col-header">❌ What NOT To Do</div>
+        <div class="col-list">
+          <div class="col-item"><span class="col-item-icon">❌</span> Never share Aadhaar, PAN, or bank details before physically visiting an office</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Don't pay any upfront "deposit" or "kit fee" for a job</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Never respond to job offers received on WhatsApp from unknown numbers</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Don't trust flashy offer letters without meeting the employer in person</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-spotlight job-case-box">
+      <div class="case-spotlight-icon">👩‍🎓</div>
+      <div>
+        <h4>Real Case: Diploma Student Gets ₹3 Lakh Loan in Her Name</h4>
+        <p>A 20-year-old diploma student from Rajkot applied for a "Data Entry" job she found on a WhatsApp group. After submitting her Aadhaar, PAN, and bank details for "background check," she was told she "didn't qualify" and was rejected. Six months later, she started getting loan repayment calls — a ₹3 lakh personal loan had been taken in her name using her submitted documents.</p>
+        <p><strong>Lesson:</strong> Never share Aadhaar and PAN with unknown employers. These documents combined with your photo and bank details are enough to take loans in your name.</p>
+      </div>
+    </div>
+
+    <div class="protection-strip job-strip">
+      <div class="protection-strip-text">
+        <strong>Scan suspicious job portal URLs</strong>
+        <span>Verify if a job site or recruitment portal is legitimate before submitting your documents.</span>
+      </div>
+      <a href="{{ url_for('url_detector') }}" class="btn btn-primary" style="background:white;color:#0D9488;box-shadow:none;">Scan URL →</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  8. IDENTITY THEFT                                                  -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<section class="threat-section" id="identity">
+  <div class="threat-banner-wrap">
+    <div class="threat-banner-placeholder identity-bg-gradient">🪪</div>
+    <div class="threat-banner-overlay">
+      <div class="threat-banner-text">
+        <span class="threat-banner-eyebrow identity-eyebrow">🪪 Threat #8</span>
+        <h2>Identity Theft</h2>
+        <p>Criminals steal your Aadhaar, PAN, and personal data to open bank accounts, take loans, and commit fraud — in your name, without you knowing.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="threat-content">
+    <div class="key-facts">
+      <div class="key-fact identity-fact"><span class="key-fact-num">1.4L</span><span class="key-fact-label">Identity fraud cases filed in India 2023</span></div>
+      <div class="key-fact identity-fact"><span class="key-fact-num">₹6.5L</span><span class="key-fact-label">Average financial damage per victim</span></div>
+      <div class="key-fact identity-fact"><span class="key-fact-num">18 Mo</span><span class="key-fact-label">Average time victims take to discover theft</span></div>
+      <div class="key-fact identity-fact"><span class="key-fact-num">40%</span><span class="key-fact-label">Cases involve Aadhaar-based identity fraud</span></div>
+    </div>
+
+    <div class="threat-two-col">
+      <div class="threat-image-block">
+        <img src="{{ url_for('static', filename='photos/t.png') }}" alt="fake identity theft">
+
+      </div>
+      <div class="threat-text-block">
+        <h3>How Identity Theft Happens</h3>
+        <p>With just your Aadhaar number, PAN number, date of birth, and a photo — criminals can open bank mule accounts, apply for credit cards, and take personal loans. They combine data stolen from different data breaches to build a complete profile of you.</p>
+        <p>Data breaches are common — your phone number, email, and partial financial details may already be on the dark web from breaches of apps, hospitals, or government databases you never knew about.</p>
+        <p>Physical document theft is also common — discarded utility bills, old bank statements, or Aadhaar photocopies given at hotels or cybercafes can be used for identity fraud.</p>
+      </div>
+    </div>
+
+    <p class="warning-signs-title">⚠️ Signs Your Identity May Be Stolen</p>
+    <div class="warning-grid">
+      <div class="warning-item identity-warn"><span class="warn-icon">💳</span><div class="warn-text"><strong>Unknown credit cards or loans on CIBIL</strong><p>Check your free CIBIL report annually — unknown accounts are the clearest sign of identity theft.</p></div></div>
+      <div class="warning-item identity-warn"><span class="warn-icon">📩</span><div class="warn-text"><strong>Loan collection calls you don't recognize</strong><p>Calls about a loan you never took are a strong indicator someone has used your identity.</p></div></div>
+      <div class="warning-item identity-warn"><span class="warn-icon">📬</span><div class="warn-text"><strong>Unfamiliar bank statements arriving</strong><p>Bank documents or credit card bills for accounts you didn't open arriving at your address.</p></div></div>
+      <div class="warning-item identity-warn"><span class="warn-icon">📵</span><div class="warn-text"><strong>SIM card suddenly stops working</strong><p>SIM swapping — scammers transfer your mobile number to their SIM to receive OTPs for your accounts.</p></div></div>
+    </div>
+
+    <div class="dos-donts">
+      <div class="do-col">
+        <div class="col-header">✅ What To Do</div>
+        <div class="col-list">
+          <div class="col-item"><span class="col-item-icon">✅</span> Check your CIBIL score free at CIBIL.com or through apps like CRED once a year</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Lock your Aadhaar biometrics at myaadhaar.uidai.gov.in when not in use</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Shred or burn documents with personal info before discarding</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> File FIR immediately and report to cybercrime.gov.in if identity theft occurs</div>
+          <div class="col-item"><span class="col-item-icon">✅</span> Use masked Aadhaar (shows only last 4 digits) for non-critical verification</div>
+        </div>
+      </div>
+      <div class="dont-col">
+        <div class="col-header">❌ What NOT To Do</div>
+        <div class="col-list">
+          <div class="col-item"><span class="col-item-icon">❌</span> Never post photos of your Aadhaar, PAN, or passport on any platform including WhatsApp</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Don't give original document photocopies without writing "For [purpose] only, date" on them</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Never leave sensitive documents in cars, at hotels, or at cybercafes</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Don't link all financial accounts to one email — if that's compromised, everything is</div>
+          <div class="col-item"><span class="col-item-icon">❌</span> Don't use public Wi-Fi for banking or sharing personal details</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-spotlight identity-case-box">
+      <div class="case-spotlight-icon">🪪</div>
+      <div>
+        <h4>Real Case: Surat Man Discovers 3 Loans Taken in His Name — Totaling ₹9 Lakh</h4>
+        <p>A 28-year-old received notices from 3 different NBFCs demanding repayment on loans he never applied for. Investigation revealed his Aadhaar and PAN had been submitted at a suspicious "verification counter" at a local exhibition he attended 2 years prior. His data was used to apply for loans using fake video KYC with his manipulated photos.</p>
+        <p><strong>Lesson:</strong> Lock your Aadhaar biometrics when not in use. Check CIBIL yearly. Write "For [specific use] only" on any photocopy you hand over.</p>
+      </div>
+    </div>
+
+    <div class="protection-strip identity-strip">
+      <div class="protection-strip-text">
+        <strong>Encrypt sensitive data before sharing</strong>
+        <span>Use CyberShield's Text Encryption tool to share sensitive information securely.</span>
+      </div>
+      <a href="{{ url_for('encryption') }}" class="btn btn-primary" style="background:white;color:#DB2777;box-shadow:none;">Encrypt Text →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  Emergency Resources                                               -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<section class="emergency-section">
+  <div class="emergency-inner">
+    <h2>🚨 Got Scammed? Act Within Minutes.</h2>
+    <p>The faster you report, the higher the chance of recovering money. Every minute counts — banks can often freeze transactions if notified within 30 minutes.</p>
+    <div class="emergency-cards">
+      <div class="emergency-card">
+        <div class="emergency-icon">📞</div>
+        <h4>National Cyber Helpline</h4>
+        <p>24/7 helpline for all cyber fraud cases. Call immediately if you've lost money online.</p>
+        <div class="emergency-num">1930</div>
+      </div>
+      <div class="emergency-card">
+        <div class="emergency-icon">🌐</div>
+        <h4>Cybercrime Portal</h4>
+        <p>File a detailed complaint online with supporting screenshots and transaction details.</p>
+        <div class="emergency-num">cybercrime.gov.in</div>
+      </div>
+      <div class="emergency-card">
+        <div class="emergency-icon">🏦</div>
+        <h4>Block Your Bank</h4>
+        <p>Call your bank's 24/7 helpline immediately and ask them to freeze the account.</p>
+        <div class="emergency-num">Call Bank Helpline</div>
+      </div>
+      <div class="emergency-card">
+        <div class="emergency-icon">👮</div>
+        <h4>Local Police</h4>
+        <p>File an FIR at your nearest police station — required for insurance and legal proceedings.</p>
+        <div class="emergency-num">Dial 112</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // ── Sticky Nav Active State on Scroll ──────────────────────────────
+  const sections = document.querySelectorAll('.threat-section');
+  const navPills = document.querySelectorAll('.aw-nav-pill');
+  const awNav = document.getElementById('awNav');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navPills.forEach(pill => {
+          pill.classList.toggle('active', pill.getAttribute('href') === `#${id}`);
+        });
+        // scroll pill into view in sticky nav
+        const activePill = awNav.querySelector('.aw-nav-pill.active');
+        if (activePill) {
+          activePill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      }
+    });
+  }, {
+    rootMargin: '-30% 0px -60% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(s => observer.observe(s));
+
+  // ── Scroll-in Animations ───────────────────────────────────────────
+  const animTargets = document.querySelectorAll(
+    '.key-fact, .warning-item, .case-spotlight, .do-col, .dont-col, .emergency-card, .aw-hstat'
+  );
+
+  const fadeIn = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        fadeIn.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  animTargets.forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = `opacity 0.6s ease ${(i % 6) * 0.07}s, transform 0.6s ease ${(i % 6) * 0.07}s`;
+    fadeIn.observe(el);
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block title %}URL Detector — CyberShield{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="page-hero-content">
+    <span class="section-eyebrow">URL / Link Detector</span>
+    <h1>Is This Link Safe to Click?</h1>
+    <p>Paste any suspicious URL below. We analyze it for phishing patterns, malicious domains, suspicious TLDs, IP-based
+      URLs, and more.</p>
+  </div>
+</section>
+
+<section class="section tool-section">
+  <div class="tool-container">
+    <div class="tool-input-card">
+      <label for="urlInput" class="input-label">Paste Suspicious URL</label>
+      <div class="input-group">
+        <input type="text" id="urlInput" placeholder="https://example.com/verify-account" />
+        <button onclick="scanURL()" class="btn btn-primary" id="scanBtn">Analyze URL</button>
+      </div>
+      <p class="input-hint">Supports http/https links. IP-based and shortened URLs are analyzed too.</p>
+    </div>
+
+    <div id="urlResult" class="result-card hidden">
+      <div class="result-header">
+        <div class="result-icon" id="resultIcon"></div>
+        <div>
+          <div class="result-verdict" id="resultVerdict"></div>
+          <div class="result-url-display" id="resultUrl"></div>
+        </div>
+        <div class="result-score-circle">
+          <span id="resultScore">0</span>
+          <small>/ 100</small>
+          <small id="scoreLabel"
+            style="display:block; font-size:11px; color:var(--text-muted); margin-top:4px;"></small>
+        </div>
+      </div>
+      <div class="result-flags" id="resultFlags"></div>
+      <div class="result-meter">
+        <div class="meter-bar" id="meterBar"></div>
+      </div>
+    </div>
+
+    <div class="info-cards">
+      <div class="info-card">
+        <h4>🎣 Phishing</h4>
+        <p>Fake sites that impersonate trusted brands to steal your login credentials or financial info.</p>
+      </div>
+      <div class="info-card">
+        <h4>🌐 Suspicious TLDs</h4>
+        <p>Free domain extensions like .tk, .ml, .xyz are heavily abused by scammers due to zero cost.</p>
+      </div>
+      <div class="info-card">
+        <h4>🔢 IP-Based URLs</h4>
+        <p>Legitimate sites use domain names. A URL with a raw IP address is almost always malicious.</p>
+      </div>
+      <div class="info-card">
+        <h4>🔡 URL Encoding</h4>
+        <p>Attackers use %20, %2F etc. to disguise malicious paths and bypass basic security filters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  async function scanURL() {
+    const url = document.getElementById('urlInput').value.trim();
+    const btn = document.getElementById('scanBtn');
+    if (!url) return alert('Please enter a URL.');
+
+    btn.textContent = 'Scanning…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch('/api/check-url', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      });
+      const data = await res.json();
+
+      const card = document.getElementById('urlResult');
+      card.className = `result-card ${data.status}`;
+
+      document.getElementById('resultVerdict').textContent = data.verdict;
+      const labelEl = document.getElementById('scoreLabel');
+      if (data.status === 'invalid' || data.status === 'error') {
+        labelEl.textContent = '';
+      } else if (data.status === 'safe') {
+        labelEl.textContent = 'Low Risk ✅';
+      } else if (data.status === 'warning') {
+        labelEl.textContent = 'Medium Risk ⚠️';
+      } else {
+        labelEl.textContent = 'High Risk 🚨';
+      }
+      document.getElementById('resultUrl').textContent = data.url.length > 60 ? data.url.slice(0, 60) + '…' : data.url;
+      document.getElementById('resultScore').textContent = data.score;
+
+      const icons = { safe: '✅', warning: '⚠️', danger: '🚨', invalid: '❌', error: '❌' };
+      document.getElementById('resultIcon').textContent = icons[data.status] || '❓';
+
+      const flagsEl = document.getElementById('resultFlags');
+      if (data.flags.length) {
+        flagsEl.innerHTML = '<strong>Detected Issues:</strong><ul>' +
+          data.flags.map(f => `<li>${f}</li>`).join('') + '</ul>';
+      } else {
+        flagsEl.innerHTML = '<p style="color:var(--safe-color)">No suspicious patterns detected.</p>';
+      }
+
+      const bar = document.getElementById('meterBar');
+      bar.style.width = data.score + '%';
+      bar.className = `meter-bar ${data.status}`;
+
+    } catch (err) {
+      alert('Error scanning URL. Please try again.');
+    } finally {
+      btn.textContent = 'Analyze URL';
+      btn.disabled = false;
+    }
+  }
+
+  document.getElementById('urlInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') scanURL();
+  });
+</script>
+{% endblock %}

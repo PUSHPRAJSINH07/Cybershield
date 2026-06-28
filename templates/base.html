@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}CyberShield{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<!-- ── Ticker ─────────────────────────────────────────────────────────────── -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+  <span>🚨 ALERT: 750 million Indian user records leaked on dark web — change your passwords immediately</span>
+  <span>⚠️ SCAM: Fake TRAI calls threatening to disconnect mobile numbers — do not share OTP</span>
+  <span>🚨 ALERT: Pahalgam attack relief fund scam circulating on WhatsApp — verify before donating</span>
+  <span>⚠️ PHISHING: Fake income tax refund emails asking for bank details — IT dept never emails for details</span>
+  <span>🚨 ALERT: AI-generated deepfake video scams targeting Indian families for money transfers</span>
+  <span>⚠️ SCAM: Fake job offer messages from "MNC companies" stealing Aadhaar and PAN details</span>
+  <span>🚨 ALERT: AIIMS Delhi hit by ransomware — patient data of 3 crore Indians exposed</span>
+  <span>⚠️ WARNING: Fake UPI payment screenshots used to scam shopkeepers across India</span>
+  <span>🚨 ALERT: WhatsApp OTP scam — hacker takes over account by pretending to be your friend</span>
+  <span>⚠️ SCAM: Fake electricity bill disconnect calls demanding immediate online payment</span>
+  <span>🚨 INDIA STAT: 1.5 lakh cybercrime cases reported in India in 2023 — up 113% from 2022</span>
+  <span>⚠️ WARNING: Fake Aadhaar update portal stealing biometric data — only use uidai.gov.in</span>
+  <span>🚨 ALERT: 750 million Indian user records leaked on dark web — change your passwords immediately</span>
+  <span>⚠️ SCAM: Fake TRAI calls threatening to disconnect mobile numbers — do not share OTP</span>
+  <span>🚨 ALERT: Pahalgam attack relief fund scam circulating on WhatsApp — verify before donating</span>
+  <span>⚠️ PHISHING: Fake income tax refund emails asking for bank details — IT dept never emails for details</span>
+  <span>🚨 ALERT: AI-generated deepfake video scams targeting Indian families for money transfers</span>
+  <span>⚠️ SCAM: Fake job offer messages from "MNC companies" stealing Aadhaar and PAN details</span>
+</div>
+</div>
+
+<!-- ── Navbar ──────────────────────────────────────────────────────────────── -->
+<nav class="navbar">
+  <a href="{{ url_for('home') }}" class="nav-brand">
+    <div class="brand-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z" fill="currentColor" opacity="0.9"/>
+        <path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    CyberShield
+     <span class="brand-tagline">Security Tools</span>
+  </a>
+
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="{{ url_for('home') }}" class="nav-link {% if request.endpoint == 'home' %}active{% endif %}">Home</a></li>
+
+    <!-- Tools Dropdown -->
+    <li class="nav-dropdown">
+      <button class="nav-link dropdown-toggle {% if request.endpoint in ['url_detector','email_detector','password_checker','encryption','password_generator','image_exif'] %}active{% endif %}">
+        Tools
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:4px;">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="dropdown-menu">
+        <a href="{{ url_for('url_detector') }}" class="dropdown-item {% if request.endpoint == 'url_detector' %}active{% endif %}">
+          <div class="drop-icon url-icon">🔗</div>
+          <div>
+            <strong>URL Detector</strong>
+            <span>Scan suspicious links</span>
+          </div>
+        </a>
+        <a href="{{ url_for('email_detector') }}" class="dropdown-item {% if request.endpoint == 'email_detector' %}active{% endif %}">
+          <div class="drop-icon email-icon">📧</div>
+          <div>
+            <strong>Email Scanner</strong>
+            <span>Detect phishing emails</span>
+          </div>
+        </a>
+        <a href="{{ url_for('password_checker') }}" class="dropdown-item {% if request.endpoint == 'password_checker' %}active{% endif %}">
+          <div class="drop-icon pwd-icon">🔒</div>
+          <div>
+            <strong>Password Checker</strong>
+            <span>Test password strength</span>
+          </div>
+        </a>
+        <a href="{{ url_for('password_generator') }}" class="dropdown-item {% if request.endpoint == 'password_generator' %}active{% endif %}">
+          <div class="drop-icon gen-icon">⚡</div>
+          <div>
+            <strong>Password Generator</strong>
+            <span>Generate strong passwords</span>
+          </div>
+        </a>
+        <a href="{{ url_for('encryption') }}" class="dropdown-item {% if request.endpoint == 'encryption' %}active{% endif %}">
+          <div class="drop-icon enc-icon">🛡️</div>
+          <div>
+            <strong>Encryption Tool</strong>
+            <span>AES-256 text encryption</span>
+          </div>
+        </a>
+        
+    <li><a href="{{ url_for('about') }}" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About</a></li>
+    <li><a href="{{ url_for('awareness') }}" class="nav-link {% if request.endpoint == 'awareness' %}active{% endif %}">Awareness</a></li>
+    
+  </ul>
+<a href="https://cybercrime.gov.in" target="_blank" class="btn btn-primary" style="font-size:13px;padding:8px 18px;">
+    🚨 Report Scam
+  </a>
+  <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
+    <span class="dark-icon">🌙</span>
+  </button>
+</nav>
+
+<!-- ── Page Content ────────────────────────────────────────────────────────── -->
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<!-- ── Footer ─────────────────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="brand-icon small">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z" fill="currentColor"/>
+          <path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="footer-name">CyberShield</span>
+      <p class="footer-tagline">Protecting you from scams, phishing & digital threats.</p>
+    </div>
+    <div class="footer-links">
+      <a href="{{ url_for('about') }}">About Us</a>
+      <a href="{{ url_for('awareness') }}">Awareness</a>
+      <a href="#">Privacy Policy</a>
+      <a href="{{ url_for('about') }}">Contact</a>
+    </div>
+    <p class="footer-copy">© 2026 CyberShield by Pushprajsinh Rathod. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,591 @@
+{% extends "base.html" %}
+{% block title %}CyberShield — Scam & Phishing Protection{% endblock %}
+
+{% block content %}
+
+<!-- ── Hero ───────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-brand-row">
+      <div class="hero-brand-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z" fill="currentColor"
+            opacity="0.95" />
+          <path d="M9 12l2 2 4-4" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <span class="hero-brand-name">CyberShield</span>
+    </div>
+    <h1 class="hero-headline">
+
+    </h1>
+    <p class="hero-sub">
+      Free tools to scan suspicious URLs, detect phishing emails, test password strength, generate strong passwords and encrypt your sensitive data — before it's too late.
+    </p>
+    <div class="hero-cta">
+      <a href="{{ url_for('url_detector') }}" class="btn btn-primary">Start Scanning →</a>
+      <a href="{{ url_for('awareness') }}" class="btn btn-outline">Learn About Threats</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">5</span>
+        <span class="stat-label">Protection Tools</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">Free</span>
+        <span class="stat-label">Always & Forever</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">Real‑time</span>
+        <span class="stat-label">Threat Analysis</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Tools Grid ─────────────────────────────────────────────────────────── -->
+<section class="section tools-section">
+  <div class="section-header">
+    <span class="section-eyebrow">Everything You Need</span>
+    <h2>Protection Tools, Awareness & More</h2>
+    <p>Five powerful security tools, a complete cyber awareness guide, and the story behind CyberShield — all in one
+      place.</p>
+  </div>
+
+  <div class="tools-grid">
+
+    <a href="{{ url_for('url_detector') }}" class="tool-card">
+      <div class="tool-icon url-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
+          <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
+        </svg>
+      </div>
+      <div class="tool-body">
+        <h3>URL / Link Detector</h3>
+        <p>Paste any suspicious link and get an instant risk analysis. Detects phishing domains, IP-based URLs,
+          suspicious TLDs, encoded characters, and known scam patterns before you click.</p>
+        <div class="tool-tags">
+          <span class="tag">Phishing</span>
+          <span class="tag">Malware Links</span>
+          <span class="tag">Scam Sites</span>
+        </div>
+        <span class="tool-cta">Scan a URL →</span>
+      </div>
+    </a>
+
+    <a href="{{ url_for('email_detector') }}" class="tool-card">
+      <div class="tool-icon email-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="M2 8l10 7 10-7" />
+        </svg>
+      </div>
+      <div class="tool-body">
+        <h3>Email Phishing Scanner</h3>
+        <p>Analyze email headers and body content to identify spoofed senders, urgency manipulation, credential
+          harvesting attempts, and other hallmarks of phishing attacks.</p>
+        <div class="tool-tags">
+          <span class="tag">Spoofed Sender</span>
+          <span class="tag">Header Forgery</span>
+          <span class="tag">Urgency Traps</span>
+        </div>
+        <span class="tool-cta">Analyze Email →</span>
+      </div>
+    </a>
+
+    <a href="{{ url_for('password_checker') }}" class="tool-card">
+      <div class="tool-icon pwd-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0110 0v4" />
+        </svg>
+      </div>
+      <div class="tool-body">
+        <h3>Password Strength Checker</h3>
+        <p>Evaluate your password's entropy against real-world attack vectors — brute-force, dictionary, and credential
+          stuffing. Get actionable suggestions to harden your passwords.</p>
+        <div class="tool-tags">
+          <span class="tag">Brute Force</span>
+          <span class="tag">Dictionary Attack</span>
+          <span class="tag">Entropy Score</span>
+        </div>
+        <span class="tool-cta">Test Password →</span>
+      </div>
+    </a>
+
+    <a href="{{ url_for('encryption') }}" class="tool-card">
+      <div class="tool-icon enc-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z" />
+        </svg>
+      </div>
+      <div class="tool-body">
+        <h3>Text Encryption Tool</h3>
+        <p>Encrypt sensitive messages and documents with AES-256 right in your browser. Nothing is sent to any server —
+          your data stays on your device, fully private.</p>
+        <div class="tool-tags">
+          <span class="tag">AES-256</span>
+          <span class="tag">Client-Side</span>
+          <span class="tag">Zero Upload</span>
+        </div>
+        <span class="tool-cta">Encrypt Text →</span>
+      </div>
+    </a>
+
+    <a href="{{ url_for('password_generator') }}" class="tool-card">
+      <div class="tool-icon gen-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="6" width="20" height="12" rx="2" />
+          <circle cx="7" cy="12" r="1.5" fill="currentColor" />
+          <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+          <circle cx="17" cy="12" r="1.5" fill="currentColor" />
+        </svg>
+      </div>
+      <div class="tool-body">
+        <h3>Password Generator</h3>
+        <p>Generate a strong personalised password using your name, favourite number and year. Choose length and
+          character types — get 4 strong variations instantly.</p>
+        <div class="tool-tags">
+          <span class="tag">Personalised</span>
+          <span class="tag">Strong</span>
+          <span class="tag">Memorable</span>
+        </div>
+        <span class="tool-cta">Generate Password →</span>
+      </div>
+    </a>
+
+    <a href="{{ url_for('about') }}" class="tool-card">
+      <div class="tool-icon exif-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+      </div>
+      <div class="tool-body">
+        <h3>PUSHPRAJSINH UPENDRASINH RATHOD</h3>
+        <p>Cybersecurity Enthusiast & Developer</p>
+        <p>GTU Diploma Student building free security tools to protect everyday users from digital scams and phishing
+          attacks.
+        </p>
+        <div class="tool-tags">
+          <span class="tag">GTU Diploma</span>
+          <span class="tag">Cyber Security</span>
+
+        </div>
+        <span class="tool-cta">View Profile→</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+</div>
+<!-- <div class="tool-card creator-card">
+      <div class="tool-icon creator-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+      </div>
+      <div class="tool-body">
+        <h3>PUSHPRAJSINH UPENDRASINH RATHOD</h3>
+        <p class="creator-title">Cybersecurity Enthusiast & Developer</p>
+        <p>GTU Diploma Student building free security tools to protect everyday users from digital scams and phishing
+          attacks.</p>
+        <div class="tool-tags">
+          <span class="tag">GTU Diploma</span>
+          <span class="tag">Cyber Security</span>
+        </div>
+        <a href="{{ url_for('about') }}" class="tool-cta">View Profile →</a>
+      </div>
+    </div> -->
+
+</div>
+</section>
+
+
+
+
+</div>
+</section>
+</div>
+</section>
+
+<!-- ── How It Works ───────────────────────────────────────────────────────── -->
+<section class="section hiw-section">
+  <div class="section-header">
+    <span class="section-eyebrow">How It Works</span>
+    <h2>Simple Steps. Powerful Protection.</h2>
+    <p>Each tool follows a simple 3-step process — no technical knowledge needed.</p>
+  </div>
+
+  <div class="hiw-grid">
+
+    <!-- URL Detector -->
+    <div class="hiw-card">
+      <div class="hiw-tool-label url-label">🔗 URL Detector</div>
+      <div class="hiw-steps">
+        <div class="hiw-step">
+          <div class="hiw-num">1</div>
+          <div class="hiw-text">
+            <strong>Paste the Link</strong>
+            <p>Copy any suspicious URL from email, WhatsApp, or SMS and paste it in the input box.</p>
+          </div>
+        </div>
+        <div class="hiw-arrow">↓</div>
+        <div class="hiw-step">
+          <div class="hiw-num">2</div>
+          <div class="hiw-text">
+            <strong>We Analyze 8 Patterns</strong>
+            <p>Our engine checks HTTPS, IP address, TLD, phishing keywords, URL length, hyphens and encoded characters.
+            </p>
+          </div>
+        </div>
+        <div class="hiw-arrow">↓</div>
+        <div class="hiw-step">
+          <div class="hiw-num">3</div>
+          <div class="hiw-text">
+            <strong>Get Instant Result</strong>
+            <p>You get a risk score out of 100 with a Safe, Suspicious, or Danger verdict and exact reasons.</p>
+          </div>
+        </div>
+      </div>
+      <a href="{{ url_for('url_detector') }}" class="hiw-cta">Try URL Detector →</a>
+    </div>
+
+    <!-- Email Scanner -->
+    <div class="hiw-card">
+      <div class="hiw-tool-label email-label">📧 Email Scanner</div>
+      <div class="hiw-steps">
+        <div class="hiw-step">
+          <div class="hiw-num">1</div>
+          <div class="hiw-text">
+            <strong>Enter Email Details</strong>
+            <p>Paste the sender address, subject line, and full body content of the suspicious email.</p>
+          </div>
+        </div>
+        <div class="hiw-arrow">↓</div>
+        <div class="hiw-step">
+          <div class="hiw-num">2</div>
+          <div class="hiw-text">
+            <strong>We Run 6 Checks</strong>
+            <p>Sender spoofing, urgency words, reward bait, credential harvesting, suspicious links, and ALL CAPS
+              subject.</p>
+          </div>
+        </div>
+        <div class="hiw-arrow">↓</div>
+        <div class="hiw-step">
+          <div class="hiw-num">3</div>
+          <div class="hiw-text">
+            <strong>See Full Breakdown</strong>
+            <p>Every check shows Pass or Fail with a risk score and clear explanation of what was found.</p>
+          </div>
+        </div>
+      </div>
+      <a href="{{ url_for('email_detector') }}" class="hiw-cta">Try Email Scanner →</a>
+    </div>
+
+    <!-- Password Checker -->
+    <div class="hiw-card">
+      <div class="hiw-tool-label pwd-label">🔒 Password Checker</div>
+      <div class="hiw-steps">
+        <div class="hiw-step">
+          <div class="hiw-num">1</div>
+          <div class="hiw-text">
+            <strong>Type Your Password</strong>
+            <p>Enter any password you use or want to test — analysis happens live as you type.</p>
+          </div>
+        </div>
+        <div class="hiw-arrow">↓</div>
+        <div class="hiw-step">
+          <div class="hiw-num">2</div>
+          <div class="hiw-text">
+            <strong>We Check 6 Factors</strong>
+            <p>Length, uppercase, lowercase, numbers, special characters, and common password patterns are all checked.
+            </p>
+          </div>
+        </div>
+        <div class="hiw-arrow">↓</div>
+        <div class="hiw-step">
+          <div class="hiw-num">3</div>
+          <div class="hiw-text">
+            <strong>Get Suggestions</strong>
+            <p>You get a strength score and specific tips to improve your password against real attack methods.</p>
+          </div>
+        </div>
+      </div>
+      <a href="{{ url_for('password_checker') }}" class="hiw-cta">Try Password Checker →</a>
+    </div>
+
+    <!-- Encryption -->
+    <div class="hiw-card">
+      <div class="hiw-tool-label enc-label">🛡️ Encryption Tool</div>
+      <div class="hiw-steps">
+        <div class="hiw-step">
+          <div class="hiw-num">1</div>
+          <div class="hiw-text">
+            <strong>Type Your Secret Text</strong>
+            <p>Enter any sensitive message, password, or private note you want to protect.</p>
+          </div>
+        </div>
+        <div class="hiw-arrow">↓</div>
+        <div class="hiw-step">
+          <div class="hiw-num">2</div>
+          <div class="hiw-text">
+            <strong>Set a Password Key</strong>
+            <p>Enter a secret password — this is used to lock your text with AES-256 military grade encryption.</p>
+          </div>
+        </div>
+        <div class="hiw-arrow">↓</div>
+        <div class="hiw-step">
+          <div class="hiw-num">3</div>
+          <div class="hiw-text">
+            <strong>Share Safely</strong>
+            <p>Copy the encrypted output and share it anywhere — only someone with your password can decrypt it.</p>
+          </div>
+        </div>
+      </div>
+      <a href="{{ url_for('encryption') }}" class="hiw-cta">Try Encryption Tool →</a>
+    </div>
+
+
+
+    <!-- Password Generator -->
+    <div class="hiw-card">
+      <div class="hiw-tool-label gen-label">⚡ Password Generator</div>
+      <div class="hiw-steps">
+        <div class="hiw-step">
+          <div class="hiw-num">1</div>
+          <div class="hiw-text">
+            <strong>Enter Your Details</strong>
+            <p>Type your name, favourite number, and a memorable year. All fields are optional — fill what you want
+              included.</p>
+          </div>
+        </div>
+        <div class="hiw-arrow">↓</div>
+        <div class="hiw-step">
+          <div class="hiw-num">2</div>
+          <div class="hiw-text">
+            <strong>Set Length & Options</strong>
+            <p>Choose password length from 8 to 32 characters. Toggle symbols, uppercase, numbers on or off based on
+              your needs.</p>
+          </div>
+        </div>
+        <div class="hiw-arrow">↓</div>
+        <div class="hiw-step">
+          <div class="hiw-num">3</div>
+          <div class="hiw-text">
+            <strong>Pick & Copy</strong>
+            <p>Get 4 strong password variations built around your inputs. Pick the one you like and copy it with one
+              click.</p>
+          </div>
+        </div>
+      </div>
+      <a href="{{ url_for('password_generator') }}" class="hiw-cta">Try Password Generator →</a>
+    </div>
+
+
+
+  </div>
+</section>
+
+
+
+<!-- ── Cyber Awareness Image Section ─────────────────────────────────────── -->
+
+
+
+<!-- ── Cyber Awareness 8 Cards ───────────────────────────────────────────── -->
+<section class="awareness-section">
+  <div class="awareness-header-bg">
+    <span class="section-eyebrow">Stay Informed</span>
+    <h2>The Biggest Digital Threats in India Right Now</h2>
+    <p>Millions of Indians lose money every year to these attacks. Know them before they find you.</p>
+  </div>
+
+  <div class="awareness-cards-bg">
+    <div class="threats-grid">
+
+      <a href="{{ url_for('awareness') }}#phishing" class="threat-card threat-red">
+        <div class="threat-icon">🎣</div>
+        <div class="threat-body">
+          <div class="threat-top">
+            <h4>Phishing Attacks</h4>
+            <p>Fake emails, SMS and websites stealing your passwords and bank details by impersonating trusted brands.
+            </p>
+            <div class="threat-stat">60,000+ cases in India 2023</div>
+          </div>
+          <div class="threat-bottom">
+            <span class="threat-link">Learn More →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ url_for('awareness') }}#malware" class="threat-card threat-darkred">
+        <div class="threat-icon">💀</div>
+        <div class="threat-body">
+          <div class="threat-top">
+            <h4>Malware & Ransomware</h4>
+            <p>Malicious software that encrypts your files and demands ransom. India is the 5th most attacked country.
+            </p>
+            <div class="threat-stat">53% rise in attacks in 2023</div>
+          </div>
+          <div class="threat-bottom">
+            <span class="threat-link">Learn More →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ url_for('awareness') }}#social" class="threat-card threat-green">
+        <div class="threat-icon">🎭</div>
+        <div class="threat-body">
+          <div class="threat-top">
+            <h4>Social Engineering</h4>
+            <p>Manipulating human psychology to extract sensitive information — 95% of all cyberattacks involve this.
+            </p>
+            <div class="threat-stat">95% of breaches involve humans</div>
+          </div>
+          <div class="threat-bottom">
+            <span class="threat-link">Learn More →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ url_for('awareness') }}#upi" class="threat-card threat-orange">
+        <div class="threat-icon">📱</div>
+        <div class="threat-body">
+          <div class="threat-top">
+            <h4>UPI & OTP Fraud</h4>
+            <p>Criminals call pretending to be bank officers and trick you into sharing OTPs to steal money instantly.
+            </p>
+            <div class="threat-stat">₹1,087 Cr lost in 2023</div>
+          </div>
+          <div class="threat-bottom">
+            <span class="threat-link">Learn More →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ url_for('awareness') }}#deepfake" class="threat-card threat-purple">
+        <div class="threat-icon">🤖</div>
+        <div class="threat-body">
+          <div class="threat-top">
+            <h4>AI Deepfake Scams</h4>
+            <p>AI clones the face and voice of your relatives in video calls to demand emergency money transfers.</p>
+            <div class="threat-stat">230% rise in India 2023</div>
+          </div>
+          <div class="threat-bottom">
+            <span class="threat-link">Learn More →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ url_for('awareness') }}#investment" class="threat-card threat-blue">
+        <div class="threat-icon">📈</div>
+        <div class="threat-body">
+          <div class="threat-top">
+            <h4>Fake Investment Scams</h4>
+            <p>Fake trading and crypto apps promise high returns, show fake profits, then disappear with your money.</p>
+            <div class="threat-stat">₹500 Cr lost in H1 2024</div>
+          </div>
+          <div class="threat-bottom">
+            <span class="threat-link">Learn More →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ url_for('awareness') }}#job" class="threat-card threat-teal">
+        <div class="threat-icon">💼</div>
+        <div class="threat-body">
+          <div class="threat-top">
+            <h4>Fake Job Scams</h4>
+
+            <p>Fake MNC job offers steal Aadhaar and PAN details from students to take loans in their name.</p>
+
+            <div class="threat-stat">22,000+ victims in 2023</div>
+          </div>
+          <div class="threat-bottom">
+            <span class="threat-link">Learn More →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ url_for('awareness') }}#identity" class="threat-card threat-pink">
+        <div class="threat-icon">🪪</div>
+        <div class="threat-body">
+          <div class="threat-top">
+            <h4>Identity Theft</h4>
+
+            <p>Criminals steal your Aadhaar, PAN, and personal data to open bank accounts and take loans in your name.
+            </p>
+            <div class="threat-stat">1.4 lakh identity fraud cases 2023</div>
+          </div>
+          <div class="threat-bottom">
+            <span class="threat-link">Learn More →</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── Quick Scan CTA ──────────────────────────────────────────────────────── -->
+<section class="section quick-scan-section">
+  <div class="quick-scan-box">
+    <h2>Got a suspicious link? Scan it now.</h2>
+    <p>Paste any URL below for an instant safety check — no account required.</p>
+    <div class="quick-scan-form">
+      <input type="text" id="quickUrl" placeholder="https://suspicious-link.example.com" />
+      <button onclick="quickScan()" class="btn btn-primary">Check It</button>
+    </div>
+    <div id="quickResult" class="quick-result hidden"></div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  async function quickScan() {
+    const url = document.getElementById('quickUrl').value.trim();
+    const resultEl = document.getElementById('quickResult');
+
+    if (!url) {
+      resultEl.className = 'quick-result warning';
+      resultEl.textContent = 'Please enter a URL to scan.';
+      return;
+    }
+
+    resultEl.className = 'quick-result';
+    resultEl.textContent = 'Scanning…';
+
+    try {
+      const res = await fetch('/api/check-url', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      });
+      const data = await res.json();
+
+      resultEl.className = `quick-result ${data.status}`;
+      resultEl.innerHTML = `
+      <strong>${data.verdict}</strong> — Risk Score: ${data.score}/100
+      ${data.flags.length ? '<br><small>' + data.flags.join(' · ') + '</small>' : ''}
+      <a href="/url-detector" style="margin-left:12px;color:inherit;font-weight:600;">Full Analysis →</a>
+    `;
+    } catch {
+      resultEl.className = 'quick-result danger';
+      resultEl.textContent = 'Scan failed. Please try again.';
+    }
+  }
+
+  document.getElementById('quickUrl').addEventListener('keydown', e => {
+    if (e.key === 'Enter') quickScan();
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+{% block title %}Text Encryption — CyberShield{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="page-hero-content">
+    <span class="section-eyebrow">AES-256 Encryption Tool</span>
+    <h1>Encrypt Your Sensitive Data</h1>
+    <p>Military-grade AES-256 encryption that runs 100% in your browser. Your text and password never leave your device — nothing is sent to any server.</p>
+  </div>
+</section>
+
+<section class="section tool-section">
+  <div class="tool-container">
+
+    <!-- Mode Toggle -->
+    <div class="enc-mode-toggle">
+      <button class="mode-btn active" id="encBtn" onclick="setMode('encrypt')">🔒 Encrypt</button>
+      <button class="mode-btn" id="decBtn" onclick="setMode('decrypt')">🔓 Decrypt</button>
+    </div>
+
+    <div class="tool-input-card">
+
+      <div class="email-field">
+        <label class="input-label" id="inputLabel">Text to Encrypt</label>
+        <textarea id="encInput" rows="6" placeholder="Type or paste your sensitive text here..."></textarea>
+      </div>
+
+      <div class="email-field">
+        <label class="input-label">Secret Password / Key</label>
+        <div class="input-group">
+          <input type="password" id="encKey" placeholder="Enter a strong secret password..." />
+          <button onclick="toggleKey()" class="btn btn-outline" id="keyToggle">Show</button>
+        </div>
+        <p class="input-hint">⚠️ Remember this password — without it, decryption is impossible.</p>
+      </div>
+
+      <button onclick="processEncryption()" class="btn btn-primary" id="encActionBtn" style="margin-top:8px;">
+        🔒 Encrypt Text
+      </button>
+    </div>
+
+    <!-- Output Card -->
+    <div id="encOutput" class="tool-input-card hidden" style="background:#F0FDF4; border-color:#16A34A;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <label class="input-label" id="outputLabel" style="margin:0;">Encrypted Output</label>
+        <button onclick="copyOutput()" class="btn btn-outline" style="padding:6px 16px; font-size:13px;">Copy</button>
+      </div>
+      <textarea id="encOutputText" rows="5" readonly style="width:100%; padding:14px; border-radius:10px; border:2px solid #D1FAE5; background:#ECFDF5; font-family:monospace; font-size:13px; resize:vertical; color:#065F46;"></textarea>
+      <p id="encStatusMsg" style="margin-top:10px; font-size:13px; color:#16A34A; font-weight:600;"></p>
+    </div>
+
+    <!-- Info Cards -->
+    <div class="info-cards" style="margin-top:28px;">
+      <div class="info-card">
+        <h4>🛡️ AES-256</h4>
+        <p>Advanced Encryption Standard with 256-bit keys — the same standard used by governments and banks worldwide.</p>
+      </div>
+      <div class="info-card">
+        <h4>🖥️ Client-Side Only</h4>
+        <p>All encryption/decryption happens in your browser using the Web Crypto API. Zero data is uploaded to any server.</p>
+      </div>
+      <div class="info-card">
+        <h4>🔑 Password-Based</h4>
+        <p>Your secret password is used to derive the encryption key using PBKDF2 — a military-grade key derivation method.</p>
+      </div>
+      <div class="info-card">
+        <h4>📋 Share Safely</h4>
+        <p>Copy the encrypted text and share it via email or chat. Only someone with your secret password can decrypt it.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// ── Mode Toggle ──────────────────────────────────────────────────────────────
+let currentMode = 'encrypt';
+
+function setMode(mode) {
+  currentMode = mode;
+  const encBtn       = document.getElementById('encBtn');
+  const decBtn       = document.getElementById('decBtn');
+  const actionBtn    = document.getElementById('encActionBtn');
+  const inputLabel   = document.getElementById('inputLabel');
+  const encInput     = document.getElementById('encInput');
+  const outputCard   = document.getElementById('encOutput');
+
+  outputCard.classList.add('hidden');
+  document.getElementById('encInput').value = '';
+  document.getElementById('encKey').value = '';
+
+  if (mode === 'encrypt') {
+    encBtn.classList.add('active');
+    decBtn.classList.remove('active');
+    actionBtn.textContent = '🔒 Encrypt Text';
+    inputLabel.textContent = 'Text to Encrypt';
+    encInput.placeholder = 'Type or paste your sensitive text here...';
+  } else {
+    decBtn.classList.add('active');
+    encBtn.classList.remove('active');
+    actionBtn.textContent = '🔓 Decrypt Text';
+    inputLabel.textContent = 'Encrypted Text to Decrypt';
+    encInput.placeholder = 'Paste your encrypted text here...';
+  }
+}
+
+// ── Key Toggle ───────────────────────────────────────────────────────────────
+function toggleKey() {
+  const input = document.getElementById('encKey');
+  const btn   = document.getElementById('keyToggle');
+  input.type  = input.type === 'password' ? 'text' : 'password';
+  btn.textContent = input.type === 'password' ? 'Show' : 'Hide';
+}
+
+// ── Copy Output ──────────────────────────────────────────────────────────────
+function copyOutput() {
+  const text = document.getElementById('encOutputText').value;
+  navigator.clipboard.writeText(text).then(() => {
+    document.getElementById('encStatusMsg').textContent = '✓ Copied to clipboard!';
+    setTimeout(() => {
+      document.getElementById('encStatusMsg').textContent = '';
+    }, 2000);
+  });
+}
+
+// ── Core Crypto ──────────────────────────────────────────────────────────────
+async function deriveKey(password, salt) {
+  const enc        = new TextEncoder();
+  const keyMaterial = await crypto.subtle.importKey(
+    'raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']
+  );
+  return crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
+    keyMaterial,
+    { name: 'AES-GCM', length: 256 },
+    false,
+    ['encrypt', 'decrypt']
+  );
+}
+
+function bufToBase64(buf) {
+  return btoa(String.fromCharCode(...new Uint8Array(buf)));
+}
+
+function base64ToBuf(b64) {
+  return Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+}
+
+async function encryptText(plaintext, password) {
+  const enc  = new TextEncoder();
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const iv   = crypto.getRandomValues(new Uint8Array(12));
+  const key  = await deriveKey(password, salt);
+
+  const encrypted = await crypto.subtle.encrypt(
+    { name: 'AES-GCM', iv },
+    key,
+    enc.encode(plaintext)
+  );
+
+  // Pack: salt(16) + iv(12) + ciphertext → base64
+  const combined = new Uint8Array(salt.byteLength + iv.byteLength + encrypted.byteLength);
+  combined.set(salt, 0);
+  combined.set(iv, 16);
+  combined.set(new Uint8Array(encrypted), 28);
+
+  return bufToBase64(combined.buffer);
+}
+
+async function decryptText(cipherB64, password) {
+  const combined = base64ToBuf(cipherB64);
+  const salt      = combined.slice(0, 16);
+  const iv        = combined.slice(16, 28);
+  const data      = combined.slice(28);
+  const key       = await deriveKey(password, salt);
+
+  const decrypted = await crypto.subtle.decrypt(
+    { name: 'AES-GCM', iv },
+    key,
+    data
+  );
+
+  return new TextDecoder().decode(decrypted);
+}
+
+// ── Main Handler ─────────────────────────────────────────────────────────────
+async function processEncryption() {
+  const input    = document.getElementById('encInput').value.trim();
+  const password = document.getElementById('encKey').value;
+  const outputCard  = document.getElementById('encOutput');
+  const outputText  = document.getElementById('encOutputText');
+  const statusMsg   = document.getElementById('encStatusMsg');
+  const outputLabel = document.getElementById('outputLabel');
+  const actionBtn   = document.getElementById('encActionBtn');
+
+  if (!input)    { alert('Please enter text to ' + currentMode + '.'); return; }
+  if (!password) { alert('Please enter a secret password.'); return; }
+
+  actionBtn.textContent = 'Processing…';
+  actionBtn.disabled    = true;
+
+  try {
+    if (currentMode === 'encrypt') {
+      const result = await encryptText(input, password);
+      outputLabel.textContent = 'Encrypted Output (AES-256)';
+      outputText.value        = result;
+      statusMsg.textContent   = '✓ Text encrypted successfully. Share this safely.';
+      outputCard.style.background    = '#F0FDF4';
+      outputCard.style.borderColor   = '#16A34A';
+      outputText.style.color         = '#065F46';
+      outputText.style.borderColor   = '#D1FAE5';
+      outputText.style.background    = '#ECFDF5';
+    } else {
+      try {
+        const result = await decryptText(input, password);
+        outputLabel.textContent = 'Decrypted Text';
+        outputText.value        = result;
+        statusMsg.textContent   = '✓ Text decrypted successfully.';
+        outputCard.style.background  = '#EFF6FF';
+        outputCard.style.borderColor = '#3B82F6';
+        outputText.style.color       = '#1E3A8A';
+        outputText.style.borderColor = '#BFDBFE';
+        outputText.style.background  = '#DBEAFE';
+      } catch {
+        outputLabel.textContent = 'Decryption Failed';
+        outputText.value        = '';
+        statusMsg.textContent   = '✗ Wrong password or corrupted encrypted text.';
+        outputCard.style.background  = '#FEF2F2';
+        outputCard.style.borderColor = '#DC2626';
+        statusMsg.style.color        = '#DC2626';
+      }
+    }
+    outputCard.classList.remove('hidden');
+  } catch (err) {
+    alert('Error: ' + err.message);
+  } finally {
+    actionBtn.textContent = currentMode === 'encrypt' ? '🔒 Encrypt Text' : '🔓 Decrypt Text';
+    actionBtn.disabled    = false;
+  }
+}
+</script>
+{% endblock %}
