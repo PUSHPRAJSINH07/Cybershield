@@ -1104,6 +1104,12 @@ img {
   .navbar {
     padding: 0 20px;
   }
+  .nav-dropdown {
+    display: none;
+  }
+  .btn {
+    display: none;
+  }
 
   .nav-links {
     display: none;
