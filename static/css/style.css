@@ -1107,7 +1107,7 @@ img {
   .nav-dropdown {
     display: none;
   }
-  .a.btn.btn-primary {
+  .navbar > a.btn {
   display: none;
 }
   .nav-links {
